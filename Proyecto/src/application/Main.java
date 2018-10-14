@@ -48,7 +48,7 @@ public class Main extends Application {
 	}
 	
 	
-	
+	//Escena de menú principal
 	public static Scene mainMenu(Stage primaryStage){
 		BorderPane rootPane = new BorderPane();
 		int sceneW = 800;
