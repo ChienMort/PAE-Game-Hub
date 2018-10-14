@@ -1,4 +1,6 @@
 package application;
+/*
+package application;
 	
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -20,6 +22,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -145,3 +148,24 @@ public class Main extends Application {
 	}
 	
 }
+*/
+
+/*class Mainscreen 
+{    
+    public static void run()
+    {
+    	Stage subStage = new Stage();
+        subStage.setTitle("GAMES TIME");
+        
+        FlowPane root = new FlowPane();
+        root.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(root, 640, 480);
+        
+        Button btn = new Button("Open New Stage");
+        
+        root.getChildren().add(btn);
+        subStage.setScene(scene);
+        subStage.show();
+    }
+}
+*/

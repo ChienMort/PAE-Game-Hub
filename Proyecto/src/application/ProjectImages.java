@@ -10,6 +10,8 @@ import javafx.scene.paint.ImagePattern;
 
 public class ProjectImages {
 	
+	// !!! Por ahora las funciones son un desastre, planeo optimizarlas después !!!
+	
 	private Image chessImage = new Image(getClass().getResourceAsStream("../resources/chess.jpg"));
 	private Image battleImage = new Image(getClass().getResourceAsStream("../resources/battle.jpg"));
 	private Image gatoImage = new Image(getClass().getResourceAsStream("../resources/gato.jpg"));
