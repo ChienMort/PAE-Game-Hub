@@ -20,7 +20,7 @@ public class ProjectImages {
 	private Image chessPreview = new Image(getClass().getResourceAsStream("../resources/chessPreview.jpg"));
 	private Image battlePreview = new Image(getClass().getResourceAsStream("../resources/battlePreview.jpg"));
 	private Image gatoPreview = new Image(getClass().getResourceAsStream("../resources/gatoPreview.jpg"));
-	
+	private Image defaultUserIcon = new Image(getClass().getResourceAsStream("../resources/defaultUserIcon.jpg"));
 	
 	public Image getPreview(int x){
 		switch(x){
@@ -33,6 +33,15 @@ public class ProjectImages {
 		case 3:
 			return gatoPreview;
 		}
+	}
+	
+	public ImageView getIconImageView(int icon, int sizeX, int sizeY){
+		ImageView iv = new ImageView();
+		switch(icon){
+			default:
+				iv.setImage(defaultUserIcon);
+		}
+		return iv;
 	}
 	
 	public Background backGround1(){

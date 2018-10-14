@@ -29,7 +29,13 @@ public class MainMenu {
 		
 		//Top
 		HBox topSide = new HBox(3);
+		
 		Button userInfo = new Button("User Info");
+		userInfo.setOnAction(eve->
+		{
+		UserInfo.run();
+		});
+		
 		Text Title = new Text("Minigames");
 		Title.setFont(Font.font(60));
 		Circle status = new Circle(10);
