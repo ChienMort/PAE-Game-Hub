@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 public class MainMenu {
 	
-	int test;
+	int tests;
 	
 	public static void run(){
 		Stage primaryStage = new Stage();
