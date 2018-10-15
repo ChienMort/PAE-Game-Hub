@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -109,19 +108,26 @@ public class MainMenu {
 		gato.addEventHandler(MouseEvent.MOUSE_ENTERED, 
 			    new EventHandler<MouseEvent>() {
 			        @Override public void handle(MouseEvent e) {
-			            gamePreview.setImage(projector.getPreview(3));;
-			        }
-			});
-
+			            gamePreview.setImage(projector.getPreview(3));		
 		
-		//Final
-		Scene scene = new Scene(rootPane, sceneW, sceneH);
-		primaryStage.setTitle("Main menu!");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-	}
+		gato.setOnAction(eve->
+		{
+			Gato.run();
+			primaryStage.close();
+		});	
+		}
+	});
 	
+		//Final
+				Scene scene = new Scene(rootPane, sceneW, sceneH);
+				primaryStage.setTitle("Main menu!");
+				primaryStage.setScene(scene);
+				primaryStage.show();
+	}
+}
 	//Unfinished
 	
-}
+		
+	
+
 
