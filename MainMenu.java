@@ -17,8 +17,6 @@ import javafx.stage.Stage;
 
 public class MainMenu {
 	
-	int tes;
-	
 	public static void run(){
 		Stage primaryStage = new Stage();
 		BorderPane rootPane = new BorderPane();
@@ -110,9 +108,6 @@ public class MainMenu {
 		gato.addEventHandler(MouseEvent.MOUSE_ENTERED, 
 			    new EventHandler<MouseEvent>() {
 			        @Override public void handle(MouseEvent e) {
-
-			            gamePreview.setImage(projector.getPreview(3));		
-
 			            gamePreview.setImage(projector.getPreview(3));;
 			        }
 			});
@@ -123,17 +118,21 @@ public class MainMenu {
 		primaryStage.close();
 		});
 		
-	
+		ajedrez.setOnAction(eve ->{
+			Ajedrez.run();
+			primaryStage.close();
+		});
+		
+
+		
 		//Final
-				Scene scene = new Scene(rootPane, sceneW, sceneH);
-				primaryStage.setTitle("Main menu!");
-				primaryStage.setScene(scene);
-				primaryStage.show();
+		Scene scene = new Scene(rootPane, sceneW, sceneH);
+		primaryStage.setTitle("Main menu!");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
-}
+	
 	//Unfinished
 	
-		
-	
-
+}
 
