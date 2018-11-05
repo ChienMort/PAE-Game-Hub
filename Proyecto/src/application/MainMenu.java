@@ -14,12 +14,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import localization.ProjectLocale;
 
 public class MainMenu {
 	
-	int tes;
-	
 	public static void run(){
+		
 		Stage primaryStage = new Stage();
 		BorderPane rootPane = new BorderPane();
 		int sceneW = 800;
@@ -31,13 +31,13 @@ public class MainMenu {
 		//Top
 		HBox topSide = new HBox(3);
 		
-		Button userInfo = new Button("User Info");
+		Button userInfo = new Button(ProjectLocale.rb.getString("user_info"));
 		userInfo.setOnAction(eve->
 		{
 		UserInfo.run();
 		});
 		
-		Text Title = new Text("Minigames");
+		Text Title = new Text(ProjectLocale.rb.getString("games"));
 		Title.setFont(Font.font(60));
 		Circle status = new Circle(10);
 	
@@ -52,20 +52,20 @@ public class MainMenu {
 		VBox centerButtons = new VBox(3);
 		centerButtons.setSpacing(40);
 		
-		Button ajedrez = new Button("Ajedrez");
+		Button ajedrez = new Button(ProjectLocale.rb.getString("chess_game"));
 		ajedrez.setPrefSize(x, y);
 		ajedrez.setBackground(projector.ChessIcon(x, y));
 		ajedrez.setFont(font);
 		ajedrez.setAlignment(Pos.BASELINE_RIGHT);
 		
-		Button gato = new Button("Gato");
+		Button gato = new Button(ProjectLocale.rb.getString("gato_game"));
 		gato.setPrefSize(x, y);
 		gato.setBackground(projector.gatoIcon(x, y));
 		gato.setFont(font);
 		gato.setAlignment(Pos.BASELINE_RIGHT);
 		
 		
-		Button battleShip = new Button("Battle Ship");
+		Button battleShip = new Button(ProjectLocale.rb.getString("battleship_game"));
 		battleShip.setPrefSize(x, y);
 		battleShip.setBackground(projector.battleIcon(x, y));
 		battleShip.setFont(font);
@@ -126,7 +126,7 @@ public class MainMenu {
 	
 		//Final
 				Scene scene = new Scene(rootPane, sceneW, sceneH);
-				primaryStage.setTitle("Main menu!");
+				primaryStage.setTitle(ProjectLocale.rb.getString("main_menu"));
 				primaryStage.setScene(scene);
 				primaryStage.show();
 	}

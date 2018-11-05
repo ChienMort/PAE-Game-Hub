@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import localization.ProjectLocale;
 
 public class Gato {
 
@@ -23,13 +24,13 @@ public class Gato {
 		Line hor1 = new Line(25, 110, 325, 110);
 		Line hor2 = new Line(25, 205, 325, 205);
 		
-		Button jugar = new Button("Reiniciar");
+		Button jugar = new Button(ProjectLocale.rb.getString("restart"));
 		jugar.setLayoutX(45);
 		jugar.setLayoutY(315);
-		Button cargar = new Button("Cargar");
+		Button cargar = new Button(ProjectLocale.rb.getString("load"));
 		cargar.setLayoutX(150);
 		cargar.setLayoutY(315);
-		Button regresar = new Button("Regresar");
+		Button regresar = new Button(ProjectLocale.rb.getString("return"));
 		regresar.setLayoutX(250);
 		regresar.setLayoutY(315);
 		
