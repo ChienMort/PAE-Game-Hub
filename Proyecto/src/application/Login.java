@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import localization.ProjectLocale;
 
 public class Login extends Application
 {
@@ -25,10 +26,10 @@ public class Login extends Application
 		ProjectImages pi = new ProjectImages();
 		
 		//Tec - Código
-		Button lbtn = new Button("Login");
+		Button lbtn = new Button(ProjectLocale.rb.getString("login"));
 		TextField utf = new TextField();
-		Label ulb = new Label("User");
-		Label plb = new Label("Password");
+		Label ulb = new Label(ProjectLocale.rb.getString("user"));
+		Label plb = new Label(ProjectLocale.rb.getString("password"));
 		PasswordField pf = new PasswordField();
 		GridPane gp = new GridPane();
 		gp.setBackground(pi.backGround1());
@@ -53,7 +54,7 @@ public class Login extends Application
 		
 		Scene scene =  new Scene(gp, sceneWidth, sceneHeight);
 		stage.setScene(scene);
-		stage.setTitle("Login");
+		stage.setTitle(ProjectLocale.rb.getString("login"));
 		stage.show();
 	}
 }
