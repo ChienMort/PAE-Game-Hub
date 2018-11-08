@@ -57,6 +57,12 @@ public class MainMenu {
 		ajedrez.setBackground(projector.ChessIcon(x, y));
 		ajedrez.setFont(font);
 		ajedrez.setAlignment(Pos.BASELINE_RIGHT);
+		ajedrez.setOnAction(eve->
+		{
+		Ajedrez.run();
+		primaryStage.close();
+		});
+		
 		
 		Button gato = new Button(ProjectLocale.rb.getString("gato_game"));
 		gato.setPrefSize(x, y);

@@ -12,15 +12,15 @@ public class ProjectImages {
 	
 	// !!! Por ahora las funciones son un desastre, planeo optimizarlas después !!!
 	
-	private Image chessImage = new Image(getClass().getResourceAsStream("../resources/chess.jpg"));
-	private Image battleImage = new Image(getClass().getResourceAsStream("../resources/battle.jpg"));
-	private Image gatoImage = new Image(getClass().getResourceAsStream("../resources/gato.jpg"));
-	private Image bg1 = new Image(getClass().getResourceAsStream("../resources/DotTexture.jpg"));
-	private Image header = new Image(getClass().getResourceAsStream("../resources/Header.jpg"));
-	private Image chessPreview = new Image(getClass().getResourceAsStream("../resources/chessPreview.jpg"));
-	private Image battlePreview = new Image(getClass().getResourceAsStream("../resources/battlePreview.jpg"));
-	private Image gatoPreview = new Image(getClass().getResourceAsStream("../resources/gatoPreview.jpg"));
-	private Image defaultUserIcon = new Image(getClass().getResourceAsStream("../resources/defaultUserIcon.jpg"));
+	public Image chessImage = new Image(getClass().getResourceAsStream("../resources/chess.jpg"));
+	public Image battleImage = new Image(getClass().getResourceAsStream("../resources/battle.jpg"));
+	public Image gatoImage = new Image(getClass().getResourceAsStream("../resources/gato.jpg"));
+	public Image bg1 = new Image(getClass().getResourceAsStream("../resources/DotTexture.jpg"));
+	public Image header = new Image(getClass().getResourceAsStream("../resources/Header.jpg"));
+	public Image chessPreview = new Image(getClass().getResourceAsStream("../resources/chessPreview.jpg"));
+	public Image battlePreview = new Image(getClass().getResourceAsStream("../resources/battlePreview.jpg"));
+	public Image gatoPreview = new Image(getClass().getResourceAsStream("../resources/gatoPreview.jpg"));
+	public Image defaultUserIcon = new Image(getClass().getResourceAsStream("../resources/defaultUserIcon.jpg"));
 	
 	public Image getPreview(int x){
 		switch(x){
@@ -45,7 +45,7 @@ public class ProjectImages {
 	}
 	
 	public Background backGround1(){
-	ImagePattern pat = new ImagePattern(bg1, 0, 0, 800, 600, false);
+	ImagePattern pat = new ImagePattern(bg1, 0, 0, 100, 100, false);
 		BackgroundFill bf = new BackgroundFill(pat, CornerRadii.EMPTY, Insets.EMPTY);
 		Background bg = new Background(bf);
 		return bg;

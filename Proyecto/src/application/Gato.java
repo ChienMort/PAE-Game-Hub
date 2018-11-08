@@ -16,8 +16,10 @@ public class Gato {
 	public static void run() {
 		Pane ventana = new Pane();
 		Stage stage = new Stage();
+		ProjectImages projector = new ProjectImages();
 		
-		Scene sce = new Scene(ventana, 350, 350);
+		Scene sce = new Scene(ventana, 800, 600);
+		ventana.setBackground(projector.backGround1());
 		Line ver1 = new Line(125, 15, 125, 300);
 		Line ver2 = new Line(225, 15, 225, 300);
 		

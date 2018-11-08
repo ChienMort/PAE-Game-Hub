@@ -22,7 +22,7 @@ public class Login extends Application
 	public void start(Stage stage) throws Exception
 	{
 		//Ricardo - Agregando cosas para adaptar el código
-		int sceneWidth = 240, sceneHeight = 240;
+		int sceneWidth = 800, sceneHeight = 600;
 		ProjectImages pi = new ProjectImages();
 		
 		//Tec - Código
