@@ -16,6 +16,12 @@ public class ProjectSound {
 	
 	public MediaPlayer player = new MediaPlayer(media);
 	
-	private Status status = Status.STOPPED;
+	
+	private Status status = Status.UNKNOWN;
 			
+	public void playMenuMusic(){
+		player.play();
+		System.out.println(player.getStatus());
+	}
+	
 	}
