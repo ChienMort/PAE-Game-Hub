@@ -13,9 +13,8 @@ import localization.ProjectLocale;
 
 public class Gato {
 
-	public static void run() {
+	public static Scene gato(Stage stage) {
 		Pane ventana = new Pane();
-		Stage stage = new Stage();
 		ProjectImages projector = new ProjectImages();
 		
 		Scene sce = new Scene(ventana, 800, 600);
@@ -51,18 +50,14 @@ public class Gato {
 		equis2.setStrokeWidth(8);
 		
 		
-		ventana.getChildren().addAll(ver1, ver2, hor1, hor2, jugar, cargar, regresar, cir, equis1, equis2);
-		stage.setScene(sce);
-		stage.show();
-		
-		
-		
+		ventana.getChildren().addAll(ver1, ver2, hor1, hor2, jugar, cargar, regresar, cir, equis1, equis2);		
 		
 		regresar.setOnAction(eve->
 		{
-		MainMenu.run();
-		stage.close();
+			stage.setScene(MainMenu.Menu(stage));
 		});
+		
+		return sce;
 		
 		
 	}

@@ -12,15 +12,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import localization.ProjectLocale;
 
-public class Login extends Application
+public class Login
 {
-	public static void main(String[] args)
-	{
-		launch(args);
-	}
 	
-	public void start(Stage stage) throws Exception
-	{
+	public static Scene Login(Stage stage){
 		//Ricardo - Agregando cosas para adaptar el código
 		int sceneWidth = 800, sceneHeight = 600;
 		ProjectImages pi = new ProjectImages();
@@ -46,16 +41,16 @@ public class Login extends Application
 		gp.setHgap(10.0);
 		gp.setVgap(20.0);
 		
+		Scene scene =  new Scene(gp, sceneWidth, sceneHeight);
+		
 		lbtn.setOnAction(eve->
 		{
-		MainMenu.run();
-		stage.close();
+			stage.setScene(MainMenu.Menu(stage));
 		});
 		
-		Scene scene =  new Scene(gp, sceneWidth, sceneHeight);
-		stage.setScene(scene);
-		stage.setTitle(ProjectLocale.rb.getString("login"));
-		stage.show();
+		
+		
+		return scene;
 	}
 }
 

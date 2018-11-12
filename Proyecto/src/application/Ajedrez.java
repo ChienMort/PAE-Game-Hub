@@ -10,9 +10,9 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Ajedrez {
-	public static void run() {
+	public static Scene ajedrez(Stage stage) {
 		GridPane bpane =new GridPane();
-		Stage stage = new Stage();
+		Scene sce = new Scene(bpane, 800, 600);
 		
 		ProjectImages projector = new ProjectImages();
 		bpane.setBackground(projector.backGround1());
@@ -230,6 +230,12 @@ public class Ajedrez {
 		Button cargar = new Button("Cargar");
 		Button regresar = new Button("Regresar");
 		
+		regresar.setOnAction(eve->
+		{
+			stage.setScene(MainMenu.Menu(stage));
+		});
+		
+		
 		GridPane.setConstraints(reiniciar, 8, 2);
 		GridPane.setConstraints(cargar, 8, 3);
 		GridPane.setConstraints(regresar, 8, 4);
@@ -244,16 +250,7 @@ public class Ajedrez {
 		bpane.getChildren().addAll(tor, cab, alf, rey, reina, alf2, cab2, tor2, pW1, pW2, pW3, pW4, pW5, pW6, pW7, pW8);
 		bpane.getChildren().addAll(tor3, cab3, alf3, rey2, reina2, alf4, cab4, tor4, pB1, pB2, pB3, pB4, pB5, pB6, pB7, pB8);
 		
-		Scene sce = new Scene(bpane, 800, 600);
-		stage.setScene(sce);
-		stage.show();
-		
-		regresar.setOnAction(eve->
-		{
-		MainMenu.run();
-		stage.close();
-		});
-		
-		
+		return sce;
+			
 	}
 }

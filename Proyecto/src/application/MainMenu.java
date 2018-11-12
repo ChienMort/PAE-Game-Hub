@@ -10,24 +10,23 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import localization.ProjectLocale;
+import resources.sounds.ProjectSound;
 
 public class MainMenu {
 	
-	public static void run(){
-		
-		Stage primaryStage = new Stage();
+	public static Scene Menu(Stage stage){
 		BorderPane rootPane = new BorderPane();
 		int sceneW = 800;
 		int sceneH = 600;
 		Font font = new Font(40);
 		ProjectImages projector = new ProjectImages();
-		
-		
+
 		//Top
 		HBox topSide = new HBox(3);
 		
@@ -57,19 +56,12 @@ public class MainMenu {
 		ajedrez.setBackground(projector.ChessIcon(x, y));
 		ajedrez.setFont(font);
 		ajedrez.setAlignment(Pos.BASELINE_RIGHT);
-		ajedrez.setOnAction(eve->
-		{
-		Ajedrez.run();
-		primaryStage.close();
-		});
-		
 		
 		Button gato = new Button(ProjectLocale.rb.getString("gato_game"));
 		gato.setPrefSize(x, y);
 		gato.setBackground(projector.gatoIcon(x, y));
 		gato.setFont(font);
 		gato.setAlignment(Pos.BASELINE_RIGHT);
-		
 		
 		Button battleShip = new Button(ProjectLocale.rb.getString("battleship_game"));
 		battleShip.setPrefSize(x, y);
@@ -102,7 +94,8 @@ public class MainMenu {
 		ajedrez.addEventHandler(MouseEvent.MOUSE_ENTERED, 
 			    new EventHandler<MouseEvent>() {
 			        @Override public void handle(MouseEvent e) {
-			            gamePreview.setImage(projector.getPreview(1));;
+			            gamePreview.setImage(projector.getPreview(1));
+			       
 			        }
 			});
 		
@@ -125,16 +118,18 @@ public class MainMenu {
 		
 		gato.setOnAction(eve->
 		{
-		Gato.run();
-		primaryStage.close();
+			stage.setScene(Gato.gato(stage));
 		});
+		
+		ajedrez.setOnAction(eve->{
+			stage.setScene(Ajedrez.ajedrez(stage));
+			});
 		
 	
 		//Final
 				Scene scene = new Scene(rootPane, sceneW, sceneH);
-				primaryStage.setTitle(ProjectLocale.rb.getString("main_menu"));
-				primaryStage.setScene(scene);
-				primaryStage.show();
+
+				return scene;
 	}
 }
 	//Unfinished
