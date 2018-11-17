@@ -19,7 +19,7 @@ public class ProjectImages {
 	public Image header = new Image(getClass().getResourceAsStream("../resources/Header.jpg"));
 	public Image chessPreview = new Image(getClass().getResourceAsStream("../resources/chessPreview.jpg"));
 	public Image battlePreview = new Image(getClass().getResourceAsStream("../resources/battlePreview.jpg"));
-	public Image gatoPreview = new Image(getClass().getResourceAsStream("../resources/gatoPreview.jpg"));
+	public Image gatoPreview = new Image(getClass().getResourceAsStream("../resources/gatoPreview.png"));
 	public Image defaultUserIcon = new Image(getClass().getResourceAsStream("../resources/defaultUserIcon.jpg"));
 	
 	public Image getPreview(int x){
