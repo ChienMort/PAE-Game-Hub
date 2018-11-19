@@ -21,6 +21,10 @@ public class ProjectImages {
 	public Image battlePreview = new Image(getClass().getResourceAsStream("../resources/battlePreview.jpg"));
 	public Image gatoPreview = new Image(getClass().getResourceAsStream("../resources/gatoPreview.png"));
 	public Image defaultUserIcon = new Image(getClass().getResourceAsStream("../resources/defaultUserIcon.jpg"));
+	public Image bsWater = new Image(getClass().getResourceAsStream("../resources/WaterTile.jpg"));
+	public Image bsMiss = new Image(getClass().getResourceAsStream("../resources/MissedTile.jpg"));
+	public Image bsHit = new Image(getClass().getResourceAsStream("../resources/HitTile.jpg"));
+	
 	
 	public Image getPreview(int x){
 		switch(x){
@@ -45,9 +49,10 @@ public class ProjectImages {
 	}
 	
 	public Background backGround1(){
-	ImagePattern pat = new ImagePattern(bg1, 0, 0, 100, 100, false);
+	ImagePattern pat = new ImagePattern(bg1, 0, 0, 120, 120, false);
 		BackgroundFill bf = new BackgroundFill(pat, CornerRadii.EMPTY, Insets.EMPTY);
 		Background bg = new Background(bf);
+		
 		return bg;
 	}
 	

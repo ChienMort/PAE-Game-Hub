@@ -24,19 +24,6 @@ public class Battleship {
 		
 		//Game display
 		
-		for(int i = 0; i < Board.getSize(); i++){
-			for (int o = 0; o < Board.getSize(); o++){
-				
-				
-				switch(Board.board[i][o].currState){		
-				
-				default: GamePane.add(new Button("Empty"), i, o);
-				
-				}
-				
-			}
-		}
-		
 		//End
 		
 		rootPane.setCenter(GamePane);

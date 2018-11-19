@@ -1,13 +1,20 @@
 package application;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import localization.ProjectLocale;
 
@@ -28,6 +35,12 @@ public class Login
 		GridPane gp = new GridPane();
 		gp.setBackground(pi.backGround1());
 		
+		//Añadiendo lenguajes
+		ChoiceBox<String> cb = new ChoiceBox<String>();
+		ObservableList<String> choiceList = FXCollections.observableArrayList("Esp", "English");
+		cb.setItems(choiceList);
+		cb.setTooltip(new Tooltip("Language"));		
+		
 		utf.setMaxWidth(120.0);
 		pf.setMaxWidth(120.0);
 		gp.setAlignment(Pos.CENTER);
@@ -37,13 +50,22 @@ public class Login
 		gp.add(plb, 0, 1);
 		gp.add(pf, 1, 1);
 		gp.add(lbtn, 1, 2);
+		gp.add(cb, 0, 4);
 		gp.setHgap(10.0);
 		gp.setVgap(20.0);
 		
 		Scene scene =  new Scene(gp, sceneWidth, sceneHeight);
+				
+		cb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
+            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+                if(newValue.equals("Esp")) ProjectLocale.setLanguage(1);
+            }
+        });
+
 		
 		lbtn.setOnAction(eve->
 		{
+			if(cb.getValue().equals("Esp")) ProjectLocale.rb.getBundle(ProjectLocale.espanol.getDisplayName());
 			stage.setScene(MainMenu.Menu(stage));
 		});
 		

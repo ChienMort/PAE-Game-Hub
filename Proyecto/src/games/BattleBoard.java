@@ -2,7 +2,7 @@ package games;
 
 public class BattleBoard {
 	
-	private int size = 5;
+	private int size = 6;
 	public BattleTile[][] board = new BattleTile[size][size];
 	
 	public int getSize(){ return size; }
@@ -14,8 +14,13 @@ public class BattleBoard {
 	private void initBoard(){
 		for(int i=0; i<size; i++){
 			for(int o=0; o<size; o++){
-				if(i < 3 || o < 3) board[i][o] = new BattleTile(2);
-				else board[i][o] = new BattleTile();
+				if(i < 3 || o < 3){
+					board[i][o] = new BattleTile();
+				}
+				else{
+					
+					board[i][o] = new BattleTile();
+				}
 			}
 		}
 	}

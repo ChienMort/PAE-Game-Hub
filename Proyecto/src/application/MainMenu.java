@@ -125,7 +125,11 @@ public class MainMenu {
 			stage.setScene(Ajedrez.ajedrez(stage));
 			});
 		
-	
+		battleShip.setOnAction(eve->{
+			stage.setScene(Battleship.battleship(stage));
+			});
+		
+		
 		//Final
 				Scene scene = new Scene(rootPane, sceneW, sceneH);
 
