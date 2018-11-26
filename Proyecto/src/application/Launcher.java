@@ -17,9 +17,9 @@ public class Launcher extends Application
 		ProjectSound ps = new ProjectSound();
 		
 		stage.setTitle("Game Hub");
-		stage.setScene(Login.login(stage));
+		stage.setScene(Login.login(stage, ps));
 		stage.show();
-		ps.playMenuMusic();
+		//ps.playMenuMusic();
 	}
 	
 }

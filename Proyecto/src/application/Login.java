@@ -1,6 +1,7 @@
 package application;
 
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -8,13 +9,15 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import localization.ProjectLocale;
+import resources.sounds.ProjectSound;
 
 public class Login
 {	
-	public static Scene login(Stage stage)
+	public static Scene login(Stage stage, ProjectSound ps)
 	{
 		//Ricardo - Agregando cosas para adaptar el código
 		int sceneWidth = 280, sceneHeight = 340;
@@ -29,6 +32,11 @@ public class Login
 		GridPane gp = new GridPane();
 		gp.setBackground(pi.backGround1());
 		
+		
+		Button debugEnter = new Button("Enter");
+		//Anim
+		
+		
 		//Añadiendo lenguajes
 		ChoiceBox<String> cb = new ChoiceBox<String>();
 		cb.getItems().addAll("English", "Español");
@@ -38,6 +46,8 @@ public class Login
 		pf.setMaxWidth(120.0);
 		gp.setAlignment(Pos.CENTER);
 		
+		debugEnter.setOnAction(eve -> stage.setScene(MainMenu.Menu(stage, ps)));
+		
 		gp.add(ulb, 0, 0);
 		gp.add(utf, 1, 0);
 		gp.add(plb, 0, 1);
@@ -46,7 +56,7 @@ public class Login
 		gp.add(cb, 0, 4);
 		gp.setHgap(10.0);
 		gp.setVgap(20.0);
-		
+		gp.add(debugEnter, 1, 4);
 		
 		
 		Scene scene =  new Scene(gp, sceneWidth, sceneHeight);
@@ -69,6 +79,7 @@ public class Login
 			stage.setTitle(ProjectLocale.rb.getString("title"));
 		});
 
+		
 		return scene;
 	}
 }

@@ -10,10 +10,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import localization.ProjectLocale;
+import resources.sounds.ProjectSound;
 
 public class Gato {
 
-	public static Scene gato(Stage stage) {
+	public static Scene gato(Stage stage, ProjectSound ps) {
 		Pane ventana = new Pane();
 		ProjectImages projector = new ProjectImages();
 		
@@ -54,7 +55,7 @@ public class Gato {
 		
 		regresar.setOnAction(eve->
 		{
-			stage.setScene(MainMenu.Menu(stage));
+			stage.setScene(MainMenu.Menu(stage, ps));
 		});
 		
 		return sce;

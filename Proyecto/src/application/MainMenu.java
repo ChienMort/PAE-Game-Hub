@@ -1,10 +1,16 @@
 package application;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -20,15 +26,28 @@ import resources.sounds.ProjectSound;
 
 public class MainMenu {
 	
-	public static Scene Menu(Stage stage){
+	public static Scene Menu(Stage stage, ProjectSound ps){
 		BorderPane rootPane = new BorderPane();
 		int sceneW = 800;
 		int sceneH = 600;
 		Font font = new Font(40);
 		ProjectImages projector = new ProjectImages();
-
+		
+		
 		//Top
 		HBox topSide = new HBox(3);
+		
+		String[] selection = {"Student Council", "Afternoon", "Concord", "Nocturne", "Mute"};
+		@SuppressWarnings("rawtypes")
+		ChoiceBox<String> music = new ChoiceBox<String>(FXCollections.observableArrayList(selection));
+		
+		music.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
+            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+                String seleccion = (String) newValue;
+                ps.playMenuMusic(music.getValue());
+                System.out.println((String)music.getValue());
+            }
+        });
 		
 		Button userInfo = new Button(ProjectLocale.rb.getString("user_info"));
 		userInfo.setOnAction(eve->
@@ -38,11 +57,10 @@ public class MainMenu {
 		
 		Text Title = new Text(ProjectLocale.rb.getString("games"));
 		Title.setFont(Font.font(60));
-		Circle status = new Circle(10);
 	
 		topSide.setPadding(new Insets(10, 100, 10, 100));
 		topSide.setSpacing(100);
-		topSide.getChildren().addAll(userInfo, Title, status);
+		topSide.getChildren().addAll(userInfo, Title, music);
 		topSide.alignmentProperty().set(Pos.TOP_CENTER);
 		topSide.setBackground(projector.backGround2());
 		
@@ -118,11 +136,11 @@ public class MainMenu {
 		
 		gato.setOnAction(eve->
 		{
-			stage.setScene(Gato.gato(stage));
+			stage.setScene(Gato.gato(stage, ps));
 		});
 		
 		ajedrez.setOnAction(eve->{
-			stage.setScene(Ajedrez.ajedrez(stage));
+			stage.setScene(Ajedrez.ajedrez(stage, ps));
 			});
 		
 		battleShip.setOnAction(eve->{

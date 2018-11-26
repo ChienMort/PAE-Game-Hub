@@ -8,9 +8,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import resources.sounds.ProjectSound;
 
 public class Ajedrez {
-	public static Scene ajedrez(Stage stage) {
+	public static Scene ajedrez(Stage stage, ProjectSound ps) {
 		GridPane bpane =new GridPane();
 		Scene sce = new Scene(bpane, 800, 600);
 		
@@ -232,7 +233,7 @@ public class Ajedrez {
 		
 		regresar.setOnAction(eve->
 		{
-			stage.setScene(MainMenu.Menu(stage));
+			stage.setScene(MainMenu.Menu(stage, ps));
 		});
 		
 		
