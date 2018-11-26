@@ -1,7 +1,5 @@
 package application;
 
-
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -60,6 +58,11 @@ public class Login
 		
 		
 		Scene scene =  new Scene(gp, sceneWidth, sceneHeight);
+		
+		lbtn.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
+		{
+			
+		});
 
 		cb.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) ->
 		{
