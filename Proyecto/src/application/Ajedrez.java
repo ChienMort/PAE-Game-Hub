@@ -160,7 +160,7 @@ public class Ajedrez {
 		GridPane.setConstraints(pB7, 6, 6);
 		GridPane.setConstraints(pB8, 7, 6);
 		
-		//Tablero
+		//Tableros
 		Rectangle cuadro1 = new Rectangle(50, 60, Color.LIGHTGREEN);
 		Rectangle cuadro2 = new Rectangle(50, 60, Color.LIGHTGREEN);
 		Rectangle cuadro3 = new Rectangle(50, 60, Color.LIGHTGREEN);
