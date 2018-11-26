@@ -1,10 +1,6 @@
 package application;
 
-import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,18 +8,16 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import localization.ProjectLocale;
 
 public class Login
-{
-	
-	public static Scene Login(Stage stage){
+{	
+	public static Scene login(Stage stage)
+	{
 		//Ricardo - Agregando cosas para adaptar el código
-		int sceneWidth = 800, sceneHeight = 600;
+		int sceneWidth = 280, sceneHeight = 340;
 		ProjectImages pi = new ProjectImages();
 		
 		//Tec - Código
@@ -37,10 +31,9 @@ public class Login
 		
 		//Añadiendo lenguajes
 		ChoiceBox<String> cb = new ChoiceBox<String>();
-		ObservableList<String> choiceList = FXCollections.observableArrayList("Esp", "English");
-		cb.setItems(choiceList);
-		cb.setTooltip(new Tooltip("Language"));		
-		
+		cb.getItems().addAll("English", "Español");
+		cb.getSelectionModel().selectFirst();
+
 		utf.setMaxWidth(120.0);
 		pf.setMaxWidth(120.0);
 		gp.setAlignment(Pos.CENTER);
@@ -54,23 +47,28 @@ public class Login
 		gp.setHgap(10.0);
 		gp.setVgap(20.0);
 		
+		
+		
 		Scene scene =  new Scene(gp, sceneWidth, sceneHeight);
-				
-		cb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
-            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-                if(newValue.equals("Esp")) ProjectLocale.setLanguage(1);
-            }
-        });
 
-		
-		lbtn.setOnAction(eve->
+		cb.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) ->
 		{
-			if(cb.getValue().equals("Esp")) ProjectLocale.rb.getBundle(ProjectLocale.espanol.getDisplayName());
-			stage.setScene(MainMenu.Menu(stage));
+			switch(newValue)
+			{
+			case "English":
+				 ProjectLocale.setBundleEng();
+				break;
+			case "Español":
+				ProjectLocale.setBundleEsp();
+				break;
+			}
+
+			lbtn.setText(ProjectLocale.rb.getString("login"));
+			ulb.setText(ProjectLocale.rb.getString("user"));
+			plb.setText(ProjectLocale.rb.getString("password"));
+			stage.setTitle(ProjectLocale.rb.getString("title"));
 		});
-		
-		
-		
+
 		return scene;
 	}
 }
