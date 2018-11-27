@@ -1,5 +1,7 @@
 package application;
 
+import javax.swing.JOptionPane;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,7 +17,7 @@ import resources.sounds.ProjectSound;
 
 public class Login
 {	
-	public static Scene login(Stage stage, ProjectSound ps)
+	public static Scene login(Stage stage, ProjectSound ps, DBConnection dbt)
 	{
 		//Ricardo - Agregando cosas para adaptar el código
 		int sceneWidth = 280, sceneHeight = 340;
@@ -30,11 +32,6 @@ public class Login
 		GridPane gp = new GridPane();
 		gp.setBackground(pi.backGround1());
 		
-		
-		Button debugEnter = new Button("Enter");
-		//Anim
-		
-		
 		//Añadiendo lenguajes
 		ChoiceBox<String> cb = new ChoiceBox<String>();
 		cb.getItems().addAll("English", "Español");
@@ -43,9 +40,7 @@ public class Login
 		utf.setMaxWidth(120.0);
 		pf.setMaxWidth(120.0);
 		gp.setAlignment(Pos.CENTER);
-		
-		debugEnter.setOnAction(eve -> stage.setScene(MainMenu.Menu(stage, ps)));
-		
+
 		gp.add(ulb, 0, 0);
 		gp.add(utf, 1, 0);
 		gp.add(plb, 0, 1);
@@ -54,14 +49,17 @@ public class Login
 		gp.add(cb, 0, 4);
 		gp.setHgap(10.0);
 		gp.setVgap(20.0);
-		gp.add(debugEnter, 1, 4);
 		
 		
 		Scene scene =  new Scene(gp, sceneWidth, sceneHeight);
-		
+
 		lbtn.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
 		{
 			
+			if(dbt.login(utf.getText(), pf.getText()))
+				stage.setScene(MainMenu.Menu(stage, ps));
+			else
+				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("failedlogin"), ProjectLocale.rb.getString("titleFailedlogin"), 0);
 		});
 
 		cb.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) ->
