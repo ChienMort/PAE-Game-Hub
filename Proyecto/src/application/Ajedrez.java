@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import resources.sounds.ProjectSound;
 
 public class Ajedrez {
-	public static Scene ajedrez(Stage stage, ProjectSound ps) {
+	public static Scene ajedrez(Stage stage, ProjectSound ps, DBConnection dbt) {
 		GridPane bpane =new GridPane();
 		Scene sce = new Scene(bpane, 800, 600);
 		
@@ -233,7 +233,7 @@ public class Ajedrez {
 		
 		regresar.setOnAction(eve->
 		{
-			stage.setScene(MainMenu.Menu(stage, ps));
+			stage.setScene(MainMenu.Menu(stage, ps, dbt));
 		});
 		
 		

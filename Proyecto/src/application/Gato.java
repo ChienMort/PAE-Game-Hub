@@ -14,7 +14,7 @@ import resources.sounds.ProjectSound;
 
 public class Gato {
 
-	public static Scene gato(Stage stage, ProjectSound ps) {
+	public static Scene gato(Stage stage, ProjectSound ps, DBConnection dbt) {
 		Pane ventana = new Pane();
 		ProjectImages projector = new ProjectImages();
 		
@@ -55,7 +55,7 @@ public class Gato {
 		
 		regresar.setOnAction(eve->
 		{
-			stage.setScene(MainMenu.Menu(stage, ps));
+			stage.setScene(MainMenu.Menu(stage, ps, dbt));
 		});
 		
 		return sce;

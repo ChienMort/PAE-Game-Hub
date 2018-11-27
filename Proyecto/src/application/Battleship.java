@@ -13,7 +13,7 @@ public class Battleship {
 
 	
 	
-	public static Scene battleship(Stage stage){
+	public static Scene battleship(Stage stage, DBConnection dbt){
 		
 		BorderPane rootPane = new BorderPane();
 		GridPane GamePane = new GridPane();

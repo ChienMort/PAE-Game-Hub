@@ -8,6 +8,8 @@ import java.sql.Statement;
 import javax.sql.DataSource;
 import javax.swing.JOptionPane;
 
+import localization.ProjectLocale;
+
 public class DBConnection
 {
 		Connection conn;
@@ -42,9 +44,26 @@ public class DBConnection
 			catch (SQLException e)
 			{
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Connection not avaliable", "Database Error", 1);
+				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("lme"), ProjectLocale.rb.getString("ltt"), 1);
+				
 			}
 			return false;
 		}
 
+		public String register(String username, String pass, String mail)
+		{
+			try
+			{
+				int id = 1;
+				rs = stmt.executeQuery("Select max(id) from users");
+				if(rs.next())
+					id = rs.getInt(1) + 1;
+				stmt.execute("insert into users values (" + id + ",'" + username + "','" + pass + "','" + mail + "')");
+				return "";
+			}
+			catch (SQLException e)
+			{
+				return e.getMessage();
+			}
+		}
 }

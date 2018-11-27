@@ -9,15 +9,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.MediaPlayer.Status;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -26,7 +22,8 @@ import resources.sounds.ProjectSound;
 
 public class MainMenu {
 	
-	public static Scene Menu(Stage stage, ProjectSound ps){
+	public static Scene Menu(Stage stage, ProjectSound ps, DBConnection dbt)
+	{
 		BorderPane rootPane = new BorderPane();
 		int sceneW = 800;
 		int sceneH = 600;
@@ -137,21 +134,20 @@ public class MainMenu {
 		
 		gato.setOnAction(eve->
 		{
-			stage.setScene(Gato.gato(stage, ps));
+			stage.setScene(Gato.gato(stage, ps, dbt));
 		});
 		
 		ajedrez.setOnAction(eve->{
-			stage.setScene(Ajedrez.ajedrez(stage, ps));
+			stage.setScene(Ajedrez.ajedrez(stage, ps, dbt));
 			});
 		
 		battleShip.setOnAction(eve->{
-			stage.setScene(Battleship.battleship(stage));
+			stage.setScene(Battleship.battleship(stage, dbt));
 			});
 		
 		
 		//Final
 				Scene scene = new Scene(rootPane, sceneW, sceneH);
-
 				return scene;
 	}
 }
