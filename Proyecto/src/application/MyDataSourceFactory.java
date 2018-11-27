@@ -17,7 +17,7 @@ public class MyDataSourceFactory {
 	public static DataSource getMySQLDataSource() {
 		MysqlDataSource mysqlDS = null;
 		try {
-			rb = ResourceBundle.getBundle("S25.db");
+			rb = ResourceBundle.getBundle("application.db");
 			mysqlDS = new MysqlDataSource();
 			mysqlDS.setUrl(rb.getString("MYSQL_DB_URL"));
 			mysqlDS.setDatabaseName(rb.getString("MYSQL_DB_NAME"));

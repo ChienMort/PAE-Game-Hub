@@ -13,13 +13,16 @@ public class Launcher extends Application
 	
 	public void start(Stage stage) throws Exception
 	{
-
+		
 		ProjectSound ps = new ProjectSound();
 		
 		stage.setTitle("Game Hub");
-		stage.setScene(Login.login(stage, ps));
+		
+		DBConnection dbt = new DBConnection();
+		dbt.start();
+		
+		stage.setScene(Login.login(stage, ps, dbt));
 		stage.show();
 		//ps.playMenuMusic();
 	}
-	
 }

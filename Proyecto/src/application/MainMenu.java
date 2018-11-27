@@ -37,9 +37,10 @@ public class MainMenu {
 		//Top
 		HBox topSide = new HBox(3);
 		
-		String[] selection = {"Student Council", "Afternoon", "Concord", "Nocturne", "Mute"};
+		String[] selection = { "Mute", "Student Council", "Afternoon", "Concord", "Nocturne"};
 		@SuppressWarnings("rawtypes")
 		ChoiceBox<String> music = new ChoiceBox<String>(FXCollections.observableArrayList(selection));
+		music.getSelectionModel().selectFirst();
 		
 		music.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
