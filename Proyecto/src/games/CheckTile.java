@@ -1,5 +1,6 @@
 package games;
 
+import application.Battleship;
 import javafx.scene.control.Button;
 
 public class CheckTile {
@@ -26,7 +27,10 @@ public class CheckTile {
 			break;
 		}
 		
-		button.setOnAction(e->{System.out.println("Coord: " +x +", " +y);
+		button.setOnAction(e->{
+			System.out.println("Coord: " +x +", " +y);
+			selected();
+			Battleship.update();
 		});
 		button.setPrefSize(50, 50);
 		
@@ -37,6 +41,8 @@ public class CheckTile {
 	}
 	
 	public void selected(){
+		Battleship.bPos[0]=x;
+		Battleship.bPos[1]=y;
 		System.out.println("Coord: " +x +", " +y);
 	}
 	
