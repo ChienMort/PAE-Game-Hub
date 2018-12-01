@@ -33,7 +33,7 @@ public class MainMenu {
 		
 		//Top
 		HBox topSide = new HBox(3);
-		
+		topSide.setBackground(projector.backGround2());
 		String[] selection = { "Mute", "Student Council", "Afternoon", "Concord", "Nocturne"};
 		ChoiceBox<String> music = new ChoiceBox<String>(FXCollections.observableArrayList(selection));
 		music.getSelectionModel().selectFirst();
@@ -45,20 +45,14 @@ public class MainMenu {
             }
         });
 		
-		Button userInfo = new Button(ProjectLocale.rb.getString("user_info"));
-		userInfo.setOnAction(eve->
-		{
-		UserInfo.run();
-		});
 		
 		Text Title = new Text(ProjectLocale.rb.getString("games"));
 		Title.setFont(Font.font(60));
 	
 		topSide.setPadding(new Insets(10, 100, 10, 100));
 		topSide.setSpacing(100);
-		topSide.getChildren().addAll(userInfo, Title, music);
+		topSide.getChildren().addAll(Title, music);
 		topSide.alignmentProperty().set(Pos.TOP_CENTER);
-		topSide.setBackground(projector.backGround2());
 		
 		//Center
 		int x= 300, y=150;
@@ -90,7 +84,6 @@ public class MainMenu {
 		
 		//Right Image
 		HBox hb = new HBox(1);
-		hb.setBackground(projector.backGround1());
 		hb.alignmentProperty().set(Pos.CENTER_LEFT);
 		
 		ImageView gamePreview = new ImageView(projector.getPreview(2));
@@ -140,11 +133,12 @@ public class MainMenu {
 			});
 		
 		battleShip.setOnAction(eve->{
-			stage.setScene(Battleship.battleship(stage, dbt));
-			});
-		
+			stage.setScene(Battleship.Checkers(stage, ps, dbt));
+			
+		});
 		
 		//Final
+				rootPane.setBackground(projector.backGround1());		
 				Scene scene = new Scene(rootPane, sceneW, sceneH);
 				return scene;
 	}

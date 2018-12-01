@@ -18,12 +18,13 @@ public class ProjectImages {
 	public Image bg1 = new Image(getClass().getResourceAsStream("../resources/DotTexture.jpg"));
 	public Image header = new Image(getClass().getResourceAsStream("../resources/Header.jpg"));
 	public Image chessPreview = new Image(getClass().getResourceAsStream("../resources/chessPreview.jpg"));
-	public Image battlePreview = new Image(getClass().getResourceAsStream("../resources/battlePreview.jpg"));
+	public Image battlePreview = new Image(getClass().getResourceAsStream("../resources/battlePreview.png"));
 	public Image gatoPreview = new Image(getClass().getResourceAsStream("../resources/gatoPreview.png"));
 	public Image defaultUserIcon = new Image(getClass().getResourceAsStream("../resources/defaultUserIcon.jpg"));
-	public Image bsWater = new Image(getClass().getResourceAsStream("../resources/WaterTile.jpg"));
-	public Image bsMiss = new Image(getClass().getResourceAsStream("../resources/MissedTile.jpg"));
-	public Image bsHit = new Image(getClass().getResourceAsStream("../resources/HitTile.jpg"));
+	public Image darkTile = new Image(getClass().getResourceAsStream("../resources/WaterTile.jpg"));
+	public Image lightTile = new Image(getClass().getResourceAsStream("../resources/MissedTile.jpg"));
+	public Image blackPiece = new Image(getClass().getResourceAsStream("../resources/BlackPiece.png"));
+	public Image whitePiece = new Image(getClass().getResourceAsStream("../resources/WhitePiece.png"));
 	
 	
 	public Image getPreview(int x){
@@ -46,6 +47,35 @@ public class ProjectImages {
 				iv.setImage(defaultUserIcon);
 		}
 		return iv;
+	}
+	
+	public ImageView getCheckPiece(int n){
+		switch(n){
+		default:
+		return new ImageView(blackPiece);
+		
+		case 1:
+		return new ImageView(whitePiece);
+		
+		}
+	}
+	
+	public Background getTileColor(int n){
+		switch(n){
+		
+		default:
+			ImagePattern pat = new ImagePattern(darkTile, 0, 0, 30, 30, false);
+			BackgroundFill bf = new BackgroundFill(pat, CornerRadii.EMPTY, Insets.EMPTY);
+			Background bg = new Background(bf);
+			return bg;
+			
+		case 1:
+			ImagePattern pot = new ImagePattern(lightTile, 0, 0, 30, 30, false);
+			BackgroundFill gbf = new BackgroundFill(pot, CornerRadii.EMPTY, Insets.EMPTY);
+			Background gbg = new Background(gbf);
+			return gbg;
+			
+		}
 	}
 	
 	public Background backGround1(){
