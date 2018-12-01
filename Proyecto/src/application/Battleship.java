@@ -1,7 +1,6 @@
 package application;
 
 import games.CheckBoard;
-import games.CheckBoardSaver;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -23,7 +22,6 @@ import resources.sounds.ProjectSound;
 public class Battleship{
 	
 	public static int[] bPos= new int[2];
-	private static CheckBoardSaver cbs = new CheckBoardSaver();
 	
 	static Text leftText = new Text("none lol");
 	static Text rightText = new Text("none yet lol");
@@ -120,23 +118,18 @@ public class Battleship{
 		
 		
 		//Bottom
-		Button Save, Load, Reset, Back;
+		Button Reset, Back;
 		Reset = new Button(ProjectLocale.rb.getString("restart"));
 		Back = new Button(ProjectLocale.rb.getString("return"));
-		Save = new Button("Save");
 		
-		Save.setOnMouseClicked(e->{
-			cbs.update();
-			cbs.save();
-		});
-		
+				
 		Back.setOnMouseClicked(e ->{
 			stage.setScene(MainMenu.Menu(stage, ps, dbt));
 		});
 		Reset.setOnMouseClicked(e->{
 			CheckBoard.resetBoard();
 		});
-		HBox hb1 = new HBox(Back, Reset, Save); 
+		HBox hb1 = new HBox(Back, Reset); 
 		hb1.setAlignment(Pos.CENTER);
 		hb1.setPadding(new Insets(5,20,5,20));
 		
