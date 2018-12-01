@@ -29,6 +29,17 @@ public class Battleship{
 	static Text rightText = new Text("none yet lol");
 	static ProjectImages pi = new ProjectImages();
 	
+	static Button rightToRight1 = new Button("Forward 1 space");
+	static Button rightToRight2 = new Button("Forward 2 spaces");
+	static Button rightToUp = new Button("Diagonal up");
+	static Button rightToDown = new Button("Diagonal down");
+	
+	static Button toRight1 = new Button("Forward 1 space");
+	static Button toRight2 = new Button("Forward 2 spaces");
+	static Button toUp = new Button("Diagonal up");
+	static Button toDown = new Button("Diagonal down");
+	
+	
 	public static Scene Checkers(Stage stage, ProjectSound ps, DBConnection dbt){
 		bPos[0]=0;
 		bPos[1]=0;
@@ -52,10 +63,6 @@ public class Battleship{
 		//Left Side
 		GridPane leftGp = new GridPane();
 		leftGp.setPadding(new Insets(50,1,50,1));
-		Button toRight1 = new Button("Forward 1 space");
-		Button toRight2 = new Button("Forward 2 spaces");
-		Button toUp = new Button("Diagonal up");
-		Button toDown = new Button("Diagonal down");
 		
 		leftGp.add(leftText, 0, 0);
 		leftGp.add(toRight1, 0, 2);
@@ -86,10 +93,6 @@ public class Battleship{
 		//Right Side
 		GridPane rightGp = new GridPane();
 		rightGp.setPadding(new Insets(50,1,50,1));
-		Button rightToRight1 = new Button("Forward 1 space");
-		Button rightToRight2 = new Button("Forward 2 spaces");
-		Button rightToUp = new Button("Diagonal up");
-		Button rightToDown = new Button("Diagonal down");
 		
 		rightGp.add(rightText, 0, 0);
 		rightGp.add(rightToRight1, 1, 2);
@@ -172,7 +175,6 @@ public class Battleship{
 	
 	
 	public static void update(){
-		
 	leftText.setText("Selected: " +bPos[0] +", " +bPos[1] +" - Piezas: " +CheckBoard.blacks);
 	rightText.setText("Selected: " +bPos[0] +", " +bPos[1]+" - Piezas: " +CheckBoard.whites);
 	
@@ -199,5 +201,33 @@ public class Battleship{
 	}
 	CheckBoard.win();
 	}//Func end
+	
+	public static void handleTurn(){
+		if(CheckBoard.turn){
+		rightToRight1.setDisable(true);
+		rightToRight2.setDisable(true);
+		rightToUp.setDisable(true);
+		rightToDown.setDisable(true);
+		
+		toRight1.setDisable(false);
+		toRight2.setDisable(false);
+		toUp.setDisable(false);
+		toDown.setDisable(false);
+		CheckBoard.turn = false;
+		}else{
+			
+		rightToRight1.setDisable(false);
+		rightToRight2.setDisable(false);
+		rightToUp.setDisable(false);
+		rightToDown.setDisable(false);
+			
+		toRight1.setDisable(true);
+		toRight2.setDisable(true);
+		toUp.setDisable(true);
+		toDown.setDisable(true);
+		CheckBoard.turn = true;
+			
+		}
+	}
 	
 }

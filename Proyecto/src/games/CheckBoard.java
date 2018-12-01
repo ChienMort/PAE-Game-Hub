@@ -12,6 +12,8 @@ public class CheckBoard {
 	private static int exists = 0;
 	public static int blacks = 12;
 	public static int whites = 12;
+	public static boolean turn = false;
+	public static boolean moved = false;
 	/*
 	
 	0 = Empty
@@ -67,19 +69,21 @@ public class CheckBoard {
 				board[7][i].state=2;
 				}
 			}
+		turn=false;
 		Battleship.update();
 	}
 	
 	//Funciones de movimiento
 		//Left
 		public static void moveRight1(int x, int y){
-			//System.out.println("T1");
 			if( ((x+1) < 8) && (board[x][y].state!=0) && (board[x][y].state==1)){//Checa que no salga del tablero
-				//System.out.println("T2");
+				
 				switch(board[x+1][y].state){
 				case 0:
 					board[x+1][y].state=1;
 					board[x][y].state=0;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 				break;
 				
@@ -87,6 +91,8 @@ public class CheckBoard {
 					board[x+1][y].state=1;
 					board[x][y].state=0;
 					whites--;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 					break;
 					}
@@ -99,6 +105,8 @@ public class CheckBoard {
 			case 0:
 				board[x+2][y].state=1;
 				board[x][y].state=0;
+				moved = true;
+				Battleship.handleTurn();
 				Battleship.update();
 			break;
 			
@@ -106,6 +114,8 @@ public class CheckBoard {
 				board[x+2][y].state=1;
 				board[x][y].state=0;
 				whites--;
+				moved = true;
+				Battleship.handleTurn();
 				Battleship.update();
 				break;
 				}
@@ -120,6 +130,8 @@ public class CheckBoard {
 				case 0:
 					board[x+1][y-1].state=1;
 					board[x][y].state=0;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 				break;
 				
@@ -127,6 +139,8 @@ public class CheckBoard {
 					board[x+1][y-1].state=1;
 					board[x][y].state=0;
 					whites--;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 					break;
 					}
@@ -141,6 +155,8 @@ public class CheckBoard {
 				case 0:
 					board[x+1][y+1].state=1;
 					board[x][y].state=0;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 				break;
 				
@@ -148,6 +164,8 @@ public class CheckBoard {
 					board[x+1][y+1].state=1;
 					board[x][y].state=0;
 					whites--;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 					break;
 					}
@@ -157,12 +175,15 @@ public class CheckBoard {
 		//Right
 		public static void moveLeft1(int x, int y){
 			//System.out.println("T1");
+			
 			if( ((x-1) >= 0) && (board[x][y].state!=0) && (board[x][y].state==2)){//Checa que no salga del tablero
 				//System.out.println("T2");
 				switch(board[x-1][y].state){
 				case 0:
 					board[x-1][y].state=2;
 					board[x][y].state=0;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 				break;
 				
@@ -170,6 +191,8 @@ public class CheckBoard {
 					board[x-1][y].state=2;
 					board[x][y].state=0;
 					blacks--;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 					break;
 					}
@@ -182,6 +205,8 @@ public class CheckBoard {
 			case 0:
 				board[x-2][y].state=2;
 				board[x][y].state=0;
+				moved = true;
+				Battleship.handleTurn();
 				Battleship.update();
 			break;
 			
@@ -189,6 +214,8 @@ public class CheckBoard {
 				board[x-2][y].state=2;
 				board[x][y].state=0;
 				blacks--;
+				moved = true;
+				Battleship.handleTurn();
 				Battleship.update();
 				break;
 				}
@@ -203,6 +230,8 @@ public class CheckBoard {
 				case 0:
 					board[x-1][y-1].state=2;
 					board[x][y].state=0;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 				break;
 				
@@ -210,6 +239,8 @@ public class CheckBoard {
 					board[x-1][y-1].state=2;
 					board[x][y].state=0;
 					blacks--;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 					break;
 					}
@@ -224,6 +255,8 @@ public class CheckBoard {
 				case 0:
 					board[x-1][y+1].state=2;
 					board[x][y].state=0;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 				break;
 				
@@ -231,6 +264,8 @@ public class CheckBoard {
 					board[x-1][y+1].state=2;
 					board[x][y].state=0;
 					blacks--;
+					moved = true;
+					Battleship.handleTurn();
 					Battleship.update();
 					break;
 					}
