@@ -64,20 +64,30 @@ public class Register
 		
 		lbtn.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
 		{
-			String re = dbt.register(utf.getText(), pf.getText(), mtf.getText());
-			if(re.equals(""))
-			{
-				stage.close();
-				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("rme"));
-				stage.setScene(MainMenu.Menu(stage, ps, dbt));
-				stage.show();
-			}
-			else if(re.contains("uniUser"))
-				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("uerr"));
-			else if(re.contains("uniMail"))
-				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("merr"));
+			if(utf.getText().equals("null") || utf.getText().equals(""))
+				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("inuser"));
+			else if(pf.getText().equals(""))
+				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("inpass"));
+			else if(mtf.getText().length() < 3)
+				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("inmail"));
 			else
-				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("ltt"));
+			{
+				String re = dbt.register(utf.getText(), pf.getText(), mtf.getText());
+				if(re.equals(""))
+				{
+					dbt.usuario =  utf.getText();
+					stage.close();
+					JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("rme"));
+					stage.setScene(MainMenu.Menu(stage, ps, dbt));
+					stage.show();
+				}
+				else if(re.contains("uniUser"))
+					JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("uerr"));
+				else if(re.contains("uniMail"))
+					JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("merr"));
+				else
+					JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("ltt"));
+			}
 		});
 
 		cb.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) ->

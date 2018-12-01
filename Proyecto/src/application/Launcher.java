@@ -17,6 +17,7 @@ public class Launcher extends Application
 		ProjectSound ps = new ProjectSound();
 		
 		stage.setTitle("Game Hub");
+		stage.setResizable(false);
 		
 		DBConnection dbt = new DBConnection();
 		dbt.start();

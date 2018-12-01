@@ -149,9 +149,3 @@ public class MainMenu {
 				return scene;
 	}
 }
-	//Unfinished
-	
-		
-	
-
-

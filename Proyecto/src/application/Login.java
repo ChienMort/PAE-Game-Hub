@@ -1,7 +1,6 @@
 package application;
 
 import javax.swing.JOptionPane;
-
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,6 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -61,6 +61,7 @@ public class Login
 		{
 			if(dbt.login(utf.getText(), pf.getText()))
 			{
+				dbt.usuario = utf.getText();
 				stage.close();
 				stage.setScene(MainMenu.Menu(stage, ps, dbt));
 				stage.show();
@@ -92,45 +93,28 @@ public class Login
 			cbtn.setText(ProjectLocale.rb.getString("register"));
 			stage.setTitle(ProjectLocale.rb.getString("title"));
 		});
-
 		
+		pf.setOnKeyReleased( e ->
+		{	
+			if(e.getCode().equals(KeyCode.ENTER))
+			{
+				gp.requestFocus();
+				if(dbt.login(utf.getText(), pf.getText()))
+				{
+					dbt.usuario = utf.getText();
+					stage.close();
+					stage.setScene(MainMenu.Menu(stage, ps, dbt));
+					stage.show();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("failedlogin"), 
+													ProjectLocale.rb.getString("titleFailedlogin"), 0);
+					
+				}
+			}	
+		});
+
 		return scene;
 	}
 }
-
-/*
-class Mainscreen 
-{    
-    public static void run()
-    {
-    	Stage subStage = new Stage();
-        subStage.setTitle("GAMES TIME");
-        
-        FlowPane root = new FlowPane();
-        root.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(root, 640, 480);
-        
-        Button btn = new Button("Open New Stage");
-        
-        root.getChildren().add(btn);
-        subStage.setScene(scene);
-        subStage.show();
-    }
-}
-*/
-
-//class NextScreen
-//{
-//	public void run()
-//	{
-//		Stage stage = new Stage();
-//        Button btn = new Button("Open New Stage");
-//        btn.setOnAction(eve->
-//        {
-//        	NS.run();
-//        	stage.close();
-//        });
-//		GridPane gp = new GridPane();
-//		Scene scene =  new Scene(gp);
-//	}
-//}

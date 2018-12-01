@@ -36,14 +36,7 @@ public class MyDataSourceFactory {
 		if (dbType != null) {
 			if (dbType.equalsIgnoreCase("mysql"))
 				return getMySQLDataSource();
-			// Si su aplicación maneja más tipos de bases de datos
-			// agregar los demás tipos y regresar el DataSource de dicho tipo.
 		}
 		return null;
 	}
-
-//	public static void main(String[] args) {
-//
-//	}
-
 }
