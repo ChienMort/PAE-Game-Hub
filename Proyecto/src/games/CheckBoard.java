@@ -1,5 +1,8 @@
 package games;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import application.Battleship;
 
 public class CheckBoard {
@@ -163,7 +166,7 @@ public class CheckBoard {
 					Battleship.update();
 				break;
 				
-				case 2:
+				case 1:
 					board[x-1][y].state=2;
 					board[x][y].state=0;
 					blacks--;
@@ -182,7 +185,7 @@ public class CheckBoard {
 				Battleship.update();
 			break;
 			
-			case 2:
+			case 1:
 				board[x-2][y].state=2;
 				board[x][y].state=0;
 				blacks--;
@@ -203,7 +206,7 @@ public class CheckBoard {
 					Battleship.update();
 				break;
 				
-				case 2:
+				case 1:
 					board[x-1][y-1].state=2;
 					board[x][y].state=0;
 					blacks--;
@@ -224,7 +227,7 @@ public class CheckBoard {
 					Battleship.update();
 				break;
 				
-				case 2:
+				case 1:
 					board[x-1][y+1].state=2;
 					board[x][y].state=0;
 					blacks--;
@@ -233,4 +236,17 @@ public class CheckBoard {
 					}
 			}
 		}
+		public static void win(){
+			if(whites==0){ 
+				JOptionPane.showMessageDialog(new JPanel(), "Black side wins!","Result", JOptionPane.INFORMATION_MESSAGE);
+				resetBoard();
+			}else if(blacks==0){
+				JOptionPane.showMessageDialog(new JPanel(), "White side wins!" ,"Result", JOptionPane.INFORMATION_MESSAGE);
+				resetBoard();
+
+			}
+		}
+		
+		
+		
 }
