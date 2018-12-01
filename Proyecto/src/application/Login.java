@@ -9,6 +9,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -26,7 +27,7 @@ public class Login
 		//Añadiendo lenguajes
 		ChoiceBox<String> cb = new ChoiceBox<String>();
 		cb.getItems().addAll("English", "Español");
-		
+		cb.getSelectionModel().selectFirst();
 		//Tec - Código
 		Button lbtn = new Button(ProjectLocale.rb.getString("login"));
 		Button cbtn = new Button(ProjectLocale.rb.getString("register"));
@@ -85,7 +86,6 @@ public class Login
 				ProjectLocale.setBundleEsp();
 				break;
 			}
-
 			lbtn.setText(ProjectLocale.rb.getString("login"));
 			ulb.setText(ProjectLocale.rb.getString("user"));
 			plb.setText(ProjectLocale.rb.getString("password"));

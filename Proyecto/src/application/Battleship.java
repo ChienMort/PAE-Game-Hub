@@ -1,14 +1,19 @@
 package application;
 
 import games.CheckBoard;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import localization.ProjectLocale;
@@ -20,7 +25,7 @@ public class Battleship{
 			
 	static Text leftText = new Text("none lol");
 	static Text rightText = new Text("none yet lol");
-	
+	static ProjectImages pi = new ProjectImages();
 	
 	public static Scene Checkers(Stage stage, ProjectSound ps, DBConnection dbt){
 		bPos[0]=0;
@@ -30,6 +35,7 @@ public class Battleship{
 		//Middle
 		GridPane gp = new GridPane();
 		CheckBoard.initBoard();
+		CheckBoard.resetBoard();
 		
 		//Render shit
 		for(int i = 0; i<8; i++){
@@ -43,6 +49,7 @@ public class Battleship{
 		
 		//Left Side
 		GridPane leftGp = new GridPane();
+		leftGp.setPadding(new Insets(50,1,50,1));
 		Button toRight1 = new Button("Forward 1 space");
 		Button toRight2 = new Button("Forward 2 spaces");
 		Button toUp = new Button("Diagonal up");
@@ -76,20 +83,36 @@ public class Battleship{
 		
 		//Right Side
 		GridPane rightGp = new GridPane();
+		rightGp.setPadding(new Insets(50,1,50,1));
 		Button rightToRight1 = new Button("Forward 1 space");
 		Button rightToRight2 = new Button("Forward 2 spaces");
 		Button rightToUp = new Button("Diagonal up");
 		Button rightToDown = new Button("Diagonal down");
 		
 		rightGp.add(rightText, 0, 0);
-		rightGp.add(rightToRight1, 0, 2);
-		rightGp.add(rightToRight2, 1, 2);
+		rightGp.add(rightToRight1, 1, 2);
+		rightGp.add(rightToRight2, 0, 2);
 		rightGp.add(rightToUp, 1, 1);
 		rightGp.add(rightToDown, 1, 3);
 		VBox rightVbox = new VBox(rightGp);
 		rightVbox.setAlignment(Pos.CENTER);
+		rightVbox.setPadding(new Insets(50,1,50,1));
 		
 		//Right side buttons functionality
+		rightToRight1.setOnMouseClicked(e->{
+			CheckBoard.moveLeft1(bPos[0], bPos[1]);
+		});
+		
+		rightToRight2.setOnMouseClicked(e->{
+			CheckBoard.moveLeft2(bPos[0], bPos[1]);
+		});
+		rightToUp.setOnMouseClicked(e->{
+			CheckBoard.moveLeftUp(bPos[0], bPos[1]);
+		});
+		rightToDown.setOnMouseClicked(e->{
+			CheckBoard.moveLeftDown(bPos[0], bPos[1]);
+		});
+		
 		
 		//Bottom
 		Button Save, Load, Reset, Back;
@@ -103,12 +126,31 @@ public class Battleship{
 		});
 		HBox hb1 = new HBox(Back, Reset); 
 		hb1.setAlignment(Pos.CENTER);
+		hb1.setPadding(new Insets(5,20,5,20));
 		
-		//
-		rootPane.setTop(new Text("Checkers"));
+		//top
+
+		String[] selection = { "Mute", "Student Council", "Afternoon", "Concord", "Nocturne"};
+		ChoiceBox<String> music = new ChoiceBox<String>(FXCollections.observableArrayList(selection));
+		music.getSelectionModel().selectFirst();
+		
+		music.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
+            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+                ps.playMenuMusic(music.getValue());
+                System.out.println((String)music.getValue());
+            }
+        });
+		Text title = new Text("Checkers");
+		title.setFont(Font.font(70));
+		HBox topHBox = new HBox(title, music);
+		topHBox.setBackground(pi.backGround2());
+		topHBox.setAlignment(Pos.CENTER);
+		topHBox.setPadding(new Insets(5,20,5,20));
+		
+		//Setsides
+		rootPane.setTop(topHBox);
 		rootPane.setRight(rightVbox);
 		rootPane.setLeft(leftVbox);
-		
 		rootPane.setCenter(centerHb);
 		rootPane.setBottom(hb1);
 		rootPane.setBackground(pi.backGround1());
@@ -126,17 +168,21 @@ public class Battleship{
 	
 	for(int i=0; i<CheckBoard.size; i++){
 		for(int o=0; o<CheckBoard.size; o++){
+			if(i%2==0 && o%2==0) CheckBoard.board[i][o].button.setBackground(pi.getTileColor(0));
+			else if(i%2!=0 && o%2!=0) CheckBoard.board[i][o].button.setBackground(pi.getTileColor(0));
+			else CheckBoard.board[i][o].button.setBackground(pi.getTileColor(1));
+
 			switch(CheckBoard.board[i][o].state){
 				default:
-					CheckBoard.board[i][o].button.setText("-");					
+					CheckBoard.board[i][o].button.setGraphic(null);					
 					break;
 					
 				case 1:
-					CheckBoard.board[i][o].button.setText("B");
+					CheckBoard.board[i][o].button.setGraphic(pi.getCheckPiece(0));
 					break;
 					
 				case 2:
-					CheckBoard.board[i][o].button.setText("W");
+					CheckBoard.board[i][o].button.setGraphic(pi.getCheckPiece(1));
 					break;
 			}
 		}

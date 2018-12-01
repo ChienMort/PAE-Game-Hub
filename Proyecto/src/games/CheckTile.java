@@ -15,15 +15,15 @@ public class CheckTile {
 		this.y = y;
 		switch(s){
 		default:
-			 button = new Button(" ");
+			 button = new Button();
 			break;
 			
 		case 1:
-			button = new Button("B");
+			button = new Button();
 			break;
 			
 		case 2:
-			button = new Button("W");
+			button = new Button();
 			break;
 		}
 		

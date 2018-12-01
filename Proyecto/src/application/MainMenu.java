@@ -33,7 +33,7 @@ public class MainMenu {
 		
 		//Top
 		HBox topSide = new HBox(3);
-		
+		topSide.setBackground(projector.backGround2());
 		String[] selection = { "Mute", "Student Council", "Afternoon", "Concord", "Nocturne"};
 		ChoiceBox<String> music = new ChoiceBox<String>(FXCollections.observableArrayList(selection));
 		music.getSelectionModel().selectFirst();

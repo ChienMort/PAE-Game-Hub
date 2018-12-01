@@ -38,7 +38,7 @@ public class CheckBoard {
 				board[7][i]=new CheckTile(2, 7, i);
 				}
 			}
-		}	
+		}
 	}
 	
 	//Init end
@@ -48,14 +48,27 @@ public class CheckBoard {
 		blacks=12;
 		whites=12;
 		for(int i = 0; i<size; i++){
-			for(int o=0; o<size; i++){
-				
+			for(int o=0; o<size; o++){
+				board[i][o].state=0;
 			}
 		}
+		for(int i=0; i<size; i++){		
+			if(i%2==1){
+				board[0][i].state=1;
+				board[2][i].state=1;
+				board[6][i].state=2;
+			}
+			if(i%2==0){
+				board[1][i].state=1;
+				board[5][i].state=2;
+				board[7][i].state=2;
+				}
+			}
 		Battleship.update();
 	}
 	
 	//Funciones de movimiento
+		//Left
 		public static void moveRight1(int x, int y){
 			//System.out.println("T1");
 			if( ((x+1) < 8) && (board[x][y].state!=0) && (board[x][y].state==1)){//Checa que no salga del tablero
@@ -137,5 +150,87 @@ public class CheckBoard {
 					}
 			}
 		}
-	
+		
+		//Right
+		public static void moveLeft1(int x, int y){
+			//System.out.println("T1");
+			if( ((x-1) >= 0) && (board[x][y].state!=0) && (board[x][y].state==2)){//Checa que no salga del tablero
+				//System.out.println("T2");
+				switch(board[x-1][y].state){
+				case 0:
+					board[x-1][y].state=2;
+					board[x][y].state=0;
+					Battleship.update();
+				break;
+				
+				case 2:
+					board[x-1][y].state=2;
+					board[x][y].state=0;
+					blacks--;
+					Battleship.update();
+					break;
+					}
+			}
+		}
+		
+		public static void moveLeft2(int x, int y){
+			if( ((x-2) >= 0) && (board[x][y].state!=0) && (board[x][y].state==2) ){//Checa que no salga del tablero
+			switch(board[x-2][y].state){
+			case 0:
+				board[x-2][y].state=2;
+				board[x][y].state=0;
+				Battleship.update();
+			break;
+			
+			case 2:
+				board[x-2][y].state=2;
+				board[x][y].state=0;
+				blacks--;
+				Battleship.update();
+				break;
+				}
+			}
+		}
+		
+		public static void moveLeftUp(int x, int y){
+			//System.out.println("T1");
+			if( ((x-1) >= 0) && ((y-1) >= 0) && (board[x][y].state!=0) && (board[x][y].state==2)){//Checa que no salga del tablero
+				//System.out.println("T2");
+				switch(board[x-1][y-1].state){
+				case 0:
+					board[x-1][y-1].state=2;
+					board[x][y].state=0;
+					Battleship.update();
+				break;
+				
+				case 2:
+					board[x-1][y-1].state=2;
+					board[x][y].state=0;
+					blacks--;
+					Battleship.update();
+					break;
+					}
+			}
+		}
+		
+		public static void moveLeftDown(int x, int y){
+			//System.out.println("T1");
+			if( ((x-1) >= 0) && (y+1 < 8) && (board[x][y].state!=0) && (board[x][y].state==2)){//Checa que no salga del tablero
+				//System.out.println("T2");
+				switch(board[x-1][y+1].state){
+				case 0:
+					board[x-1][y+1].state=2;
+					board[x][y].state=0;
+					Battleship.update();
+				break;
+				
+				case 2:
+					board[x-1][y+1].state=2;
+					board[x][y].state=0;
+					blacks--;
+					Battleship.update();
+					break;
+					}
+			}
+		}
 }
