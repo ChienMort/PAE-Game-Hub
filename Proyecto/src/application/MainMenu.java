@@ -59,12 +59,6 @@ public class MainMenu {
 		VBox centerButtons = new VBox(3);
 		centerButtons.setSpacing(40);
 		
-		Button ajedrez = new Button(ProjectLocale.rb.getString("chess_game"));
-		ajedrez.setPrefSize(x, y);
-		ajedrez.setBackground(projector.ChessIcon(x, y));
-		ajedrez.setFont(font);
-		ajedrez.setAlignment(Pos.BASELINE_RIGHT);
-		
 		Button gato = new Button(ProjectLocale.rb.getString("gato_game"));
 		gato.setPrefSize(x, y);
 		gato.setBackground(projector.gatoIcon(x, y));
@@ -79,8 +73,7 @@ public class MainMenu {
 		
 		
 		//centerButtons.setStyle("-fx-background-color: #6ECBB5;");
-		centerButtons.setBackground(projector.backGround1());
-		centerButtons.getChildren().addAll(ajedrez, gato, battleShip);
+		centerButtons.getChildren().addAll(gato, battleShip);
 		
 		//Right Image
 		HBox hb = new HBox(1);
@@ -98,14 +91,7 @@ public class MainMenu {
 		rootPane.setCenter(centerButtons);
 		
 		//Actions
-		ajedrez.addEventHandler(MouseEvent.MOUSE_ENTERED, 
-			    new EventHandler<MouseEvent>() {
-			        @Override public void handle(MouseEvent e) {
-			            gamePreview.setImage(projector.getPreview(1));
-			       
-			        }
-			});
-		
+	
 		battleShip.addEventHandler(MouseEvent.MOUSE_ENTERED, 
 			    new EventHandler<MouseEvent>() {
 			        @Override public void handle(MouseEvent e) {
@@ -128,12 +114,10 @@ public class MainMenu {
 			stage.setScene(Gato.gato(stage, ps, dbt));
 		});
 		
-		ajedrez.setOnAction(eve->{
-			stage.setScene(Ajedrez.ajedrez(stage, ps, dbt));
-			});
+
 		
 		battleShip.setOnAction(eve->{
-			stage.setScene(Battleship.Checkers(stage, ps, dbt));
+			stage.setScene(Checkers.Checkers(stage, ps, dbt));
 			
 		});
 		

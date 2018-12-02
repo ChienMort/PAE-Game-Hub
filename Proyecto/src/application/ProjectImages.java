@@ -20,7 +20,7 @@ public class ProjectImages {
 	public Image chessPreview = new Image(getClass().getResourceAsStream("../resources/chessPreview.jpg"));
 	public Image battlePreview = new Image(getClass().getResourceAsStream("../resources/battlePreview.png"));
 	public Image gatoPreview = new Image(getClass().getResourceAsStream("../resources/gatoPreview.png"));
-	public Image defaultUserIcon = new Image(getClass().getResourceAsStream("../resources/defaultUserIcon.jpg"));
+	public Image emptyTile = new Image(getClass().getResourceAsStream("../resources/EmptySpace.jpg"));
 	public Image darkTile = new Image(getClass().getResourceAsStream("../resources/WaterTile.jpg"));
 	public Image lightTile = new Image(getClass().getResourceAsStream("../resources/MissedTile.jpg"));
 	public Image blackPiece = new Image(getClass().getResourceAsStream("../resources/BlackPiece.png"));
@@ -40,14 +40,6 @@ public class ProjectImages {
 		}
 	}
 	
-	public ImageView getIconImageView(int icon, int sizeX, int sizeY){
-		ImageView iv = new ImageView();
-		switch(icon){
-			default:
-				iv.setImage(defaultUserIcon);
-		}
-		return iv;
-	}
 	
 	public ImageView getCheckPiece(int n){
 		switch(n){

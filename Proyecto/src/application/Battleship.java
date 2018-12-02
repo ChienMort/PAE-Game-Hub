@@ -1,14 +1,17 @@
 package application;
 
 import games.CheckBoard;
+import games.CheckTile;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -47,6 +50,10 @@ public class Battleship{
 		GridPane gp = new GridPane();
 		CheckBoard.initBoard();
 		CheckBoard.resetBoard();
+		//
+		
+		//Dragger
+		
 		
 		//Render shit
 		for(int i = 0; i<8; i++){
@@ -99,7 +106,7 @@ public class Battleship{
 		rightGp.add(rightToDown, 1, 3);
 		VBox rightVbox = new VBox(rightGp);
 		rightVbox.setAlignment(Pos.CENTER);
-		rightVbox.setPadding(new Insets(50,1,50,1));
+		rightVbox.setSpacing(20);
 		
 		//Right side buttons functionality
 		rightToRight1.setOnMouseClicked(e->{
@@ -195,32 +202,5 @@ public class Battleship{
 	CheckBoard.win();
 	}//Func end
 	
-	public static void handleTurn(){
-		if(CheckBoard.turn){
-		rightToRight1.setDisable(true);
-		rightToRight2.setDisable(true);
-		rightToUp.setDisable(true);
-		rightToDown.setDisable(true);
-		
-		toRight1.setDisable(false);
-		toRight2.setDisable(false);
-		toUp.setDisable(false);
-		toDown.setDisable(false);
-		CheckBoard.turn = false;
-		}else{
-			
-		rightToRight1.setDisable(false);
-		rightToRight2.setDisable(false);
-		rightToUp.setDisable(false);
-		rightToDown.setDisable(false);
-			
-		toRight1.setDisable(true);
-		toRight2.setDisable(true);
-		toUp.setDisable(true);
-		toDown.setDisable(true);
-		CheckBoard.turn = true;
-			
-		}
-	}
 	
 }

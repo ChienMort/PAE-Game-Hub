@@ -24,6 +24,7 @@ public class CheckBoard {
 	
 	public static void initBoard(){
 		//Checa para que no esté creando nuevos tableros
+		
 		if(exists==0){
 			for(int i = 0; i<size; i++){
 				for(int o = 0; o<size; o++){
@@ -83,7 +84,7 @@ public class CheckBoard {
 					board[x+1][y].state=1;
 					board[x][y].state=0;
 					moved = true;
-					Battleship.handleTurn();
+					
 					Battleship.update();
 				break;
 				
@@ -92,7 +93,7 @@ public class CheckBoard {
 					board[x][y].state=0;
 					whites--;
 					moved = true;
-					Battleship.handleTurn();
+					
 					Battleship.update();
 					break;
 					}
@@ -106,7 +107,7 @@ public class CheckBoard {
 				board[x+2][y].state=1;
 				board[x][y].state=0;
 				moved = true;
-				Battleship.handleTurn();
+				
 				Battleship.update();
 			break;
 			
@@ -115,7 +116,7 @@ public class CheckBoard {
 				board[x][y].state=0;
 				whites--;
 				moved = true;
-				Battleship.handleTurn();
+				
 				Battleship.update();
 				break;
 				}
@@ -131,7 +132,7 @@ public class CheckBoard {
 					board[x+1][y-1].state=1;
 					board[x][y].state=0;
 					moved = true;
-					Battleship.handleTurn();
+					
 					Battleship.update();
 				break;
 				
@@ -140,7 +141,7 @@ public class CheckBoard {
 					board[x][y].state=0;
 					whites--;
 					moved = true;
-					Battleship.handleTurn();
+					
 					Battleship.update();
 					break;
 					}
@@ -156,7 +157,7 @@ public class CheckBoard {
 					board[x+1][y+1].state=1;
 					board[x][y].state=0;
 					moved = true;
-					Battleship.handleTurn();
+				
 					Battleship.update();
 				break;
 				
@@ -165,7 +166,7 @@ public class CheckBoard {
 					board[x][y].state=0;
 					whites--;
 					moved = true;
-					Battleship.handleTurn();
+					
 					Battleship.update();
 					break;
 					}
@@ -183,7 +184,7 @@ public class CheckBoard {
 					board[x-1][y].state=2;
 					board[x][y].state=0;
 					moved = true;
-					Battleship.handleTurn();
+					
 					Battleship.update();
 				break;
 				
@@ -192,7 +193,7 @@ public class CheckBoard {
 					board[x][y].state=0;
 					blacks--;
 					moved = true;
-					Battleship.handleTurn();
+					
 					Battleship.update();
 					break;
 					}
@@ -206,7 +207,7 @@ public class CheckBoard {
 				board[x-2][y].state=2;
 				board[x][y].state=0;
 				moved = true;
-				Battleship.handleTurn();
+				
 				Battleship.update();
 			break;
 			
@@ -215,7 +216,7 @@ public class CheckBoard {
 				board[x][y].state=0;
 				blacks--;
 				moved = true;
-				Battleship.handleTurn();
+				
 				Battleship.update();
 				break;
 				}
@@ -231,7 +232,7 @@ public class CheckBoard {
 					board[x-1][y-1].state=2;
 					board[x][y].state=0;
 					moved = true;
-					Battleship.handleTurn();
+					
 					Battleship.update();
 				break;
 				
@@ -240,7 +241,7 @@ public class CheckBoard {
 					board[x][y].state=0;
 					blacks--;
 					moved = true;
-					Battleship.handleTurn();
+					
 					Battleship.update();
 					break;
 					}
@@ -256,7 +257,7 @@ public class CheckBoard {
 					board[x-1][y+1].state=2;
 					board[x][y].state=0;
 					moved = true;
-					Battleship.handleTurn();
+					
 					Battleship.update();
 				break;
 				
@@ -265,7 +266,7 @@ public class CheckBoard {
 					board[x][y].state=0;
 					blacks--;
 					moved = true;
-					Battleship.handleTurn();
+					
 					Battleship.update();
 					break;
 					}

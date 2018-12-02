@@ -17,7 +17,6 @@ public class UserInfo {
 		Text misc = new Text("work in progress");
 		
 		
-		gp.add(pi.getIconImageView(0, 50, 50), 0, 0, 2, 2);
 		gp.add(user, 3, 0);
 		gp.add(misc, 3, 1);
 		
