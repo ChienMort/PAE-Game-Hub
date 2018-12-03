@@ -8,23 +8,21 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.ImagePattern;
 
-public class ProjectImages {
-	
-	// !!! Por ahora las funciones son un desastre, planeo optimizarlas después !!!
-	
-	public Image chessImage = new Image(getClass().getResourceAsStream("../resources/chess.jpg"));
-	public Image battleImage = new Image(getClass().getResourceAsStream("../resources/battle.jpg"));
-	public Image gatoImage = new Image(getClass().getResourceAsStream("../resources/gato.jpg"));
-	public Image bg1 = new Image(getClass().getResourceAsStream("../resources/DotTexture.jpg"));
-	public Image header = new Image(getClass().getResourceAsStream("../resources/Header.jpg"));
-	public Image chessPreview = new Image(getClass().getResourceAsStream("../resources/chessPreview.jpg"));
-	public Image battlePreview = new Image(getClass().getResourceAsStream("../resources/battlePreview.png"));
-	public Image gatoPreview = new Image(getClass().getResourceAsStream("../resources/gatoPreview.png"));
-	public Image emptyTile = new Image(getClass().getResourceAsStream("../resources/EmptySpace.jpg"));
-	public Image darkTile = new Image(getClass().getResourceAsStream("../resources/WaterTile.jpg"));
-	public Image lightTile = new Image(getClass().getResourceAsStream("../resources/MissedTile.jpg"));
-	public Image blackPiece = new Image(getClass().getResourceAsStream("../resources/BlackPiece.png"));
-	public Image whitePiece = new Image(getClass().getResourceAsStream("../resources/WhitePiece.png"));
+public class ProjectImages
+{
+	public Image chessImage = new Image(getClass().getResourceAsStream("/resources/chess.jpg"));
+	public Image battleImage = new Image(getClass().getResourceAsStream("/resources/battle.jpg"));
+	public Image gatoImage = new Image(getClass().getResourceAsStream("/resources/gato.jpg"));
+	public Image bg1 = new Image(getClass().getResourceAsStream("/resources/DotTexture.jpg"));
+	public Image header = new Image(getClass().getResourceAsStream("/resources/Header.jpg"));
+	public Image chessPreview = new Image(getClass().getResourceAsStream("/resources/chessPreview.jpg"));
+	public Image battlePreview = new Image(getClass().getResourceAsStream("/resources/battlePreview.png"));
+	public Image gatoPreview = new Image(getClass().getResourceAsStream("/resources/gatoPreview.png"));
+	public Image emptyTile = new Image(getClass().getResourceAsStream("/resources/emptySpace.jpg"));
+	public Image darkTile = new Image(getClass().getResourceAsStream("/resources/WaterTile.jpg"));
+	public Image lightTile = new Image(getClass().getResourceAsStream("/resources/MissedTile.jpg"));
+	public Image blackPiece = new Image(getClass().getResourceAsStream("/resources/BlackPiece.png"));
+	public Image whitePiece = new Image(getClass().getResourceAsStream("/resources/WhitePiece.png"));
 	
 	
 	public Image getPreview(int x){

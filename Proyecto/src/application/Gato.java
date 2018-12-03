@@ -346,6 +346,7 @@ public class Gato
 			else
 			{
 				first = equis = true;
+				turnEventsOn();
 			}
 		});
 		
