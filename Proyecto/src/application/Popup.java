@@ -9,35 +9,27 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import localization.ProjectLocale;
 
-public class Popup 
+public class Popup
 {
-	static String k = "";
-	
-	public static String run()
-	{
+	static String k = null;
+	public static void run()
+	{	
 		Stage stage = new Stage();
 		GridPane gp = new GridPane();
-		Scene scene = new Scene(gp, 250, 100);
-		TextField utf = new TextField();
-		Button lbtn = new Button(ProjectLocale.rb.getString("send"));
+		Button btn =  new Button(ProjectLocale.rb.getString("send"));
+		TextField tf = new TextField();
 		
-		gp.add(utf, 0, 0);
-		gp.add(lbtn, 0, 1);
-		
-		gp.setAlignment(Pos.CENTER);
-		
-		lbtn.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
+		btn.addEventHandler(MouseEvent.MOUSE_CLICKED, e ->
 		{
-			k = utf.getText();
+			k = tf.getText();
 			stage.close();
 		});
 		
+		gp.add(tf, 0, 0);
+		gp.add(btn, 0, 2);
+		gp.setAlignment(Pos.CENTER);
+		Scene scene = new Scene(gp, 250, 100);
 		stage.setScene(scene);
 		stage.show();
-		while(stage.isShowing())
-		{
-			System.out.println("kk");
-		}
-		return k;
 	}
 }

@@ -21,7 +21,7 @@ public class Gato
 	static DBConnection dbtg;
 	
 	static boolean ac = true;
-	static boolean[] cuadro = new boolean[9];
+	static boolean[] cuadro = new boolean[9], xs = new boolean[9], cs = new boolean[9];
 	static boolean first = false, beginning = true, equis;
 	static int turn;
 	
@@ -78,9 +78,13 @@ public class Gato
         		{
         			x1.setStroke(Color.BLACK);
         			x2.setStroke(Color.BLACK);
+        			xs[0] = true;
         		}
         		else
+        		{
         			c1.setStroke(Color.RED);
+        			cs[0] = true;
+        		}
         		send(0);
         	}
         }
@@ -95,9 +99,13 @@ public class Gato
         		{
         			x3.setStroke(Color.BLACK);
         			x4.setStroke(Color.BLACK);
+        			xs[1] = true;
         		}
         		else
+        		{
         			c2.setStroke(Color.RED);
+        			cs[1] = true;
+        		}
         		send(1);
         	}
         }
@@ -113,9 +121,13 @@ public class Gato
         		{
         			x5.setStroke(Color.BLACK);
         			x6.setStroke(Color.BLACK);
+        			xs[2] = true;
         		}
         		else
+        		{
         			c3.setStroke(Color.RED);
+        			cs[2] = true;
+        		}
         		send(2);
         	}
         }
@@ -130,9 +142,13 @@ public class Gato
         		{
         			x7.setStroke(Color.BLACK);
         			x8.setStroke(Color.BLACK);
+        			xs[3] = true;
         		}
         		else
+        		{
         			c4.setStroke(Color.RED);
+        			cs[3] = true;
+        		}
         		send(3);
         	}
         }
@@ -147,9 +163,13 @@ public class Gato
         		{
         			x9.setStroke(Color.BLACK);
         			x10.setStroke(Color.BLACK);
+        			xs[4] = true;
         		}
         		else
+        		{
         			c5.setStroke(Color.RED);
+        			cs[4] = true;
+        		}
         		send(4);
         	}
         }
@@ -164,9 +184,13 @@ public class Gato
         		{
         			x11.setStroke(Color.BLACK);
         			x12.setStroke(Color.BLACK);
+        			xs[5] = true;
         		}
         		else
+        		{
         			c6.setStroke(Color.RED);
+        			cs[5] = true;
+        		}
         		send(5);
         	}
         }
@@ -181,9 +205,13 @@ public class Gato
         		{
         			x13.setStroke(Color.BLACK);
         			x14.setStroke(Color.BLACK);
+        			xs[6] = true;
         		}
         		else
+        		{
         			c7.setStroke(Color.RED);
+        			cs[6] = true;
+        		}
         		send(6);
         	}
         }
@@ -198,9 +226,13 @@ public class Gato
         		{
         			x15.setStroke(Color.BLACK);
         			x16.setStroke(Color.BLACK);
+        			xs[7] = true;
         		}
         		else
+        		{
         			c8.setStroke(Color.RED);
+        			cs[7] = true;
+        		}
         		send(7);
         	}
         }
@@ -215,9 +247,13 @@ public class Gato
         		{
         			x17.setStroke(Color.BLACK);
         			x18.setStroke(Color.BLACK);
+        			xs[8] = true;
         		}
         		else
+        		{
         			c9.setStroke(Color.RED);
+        			cs[8] = true;
+        		}
             	send(8);
         	}
         }
@@ -263,7 +299,11 @@ public class Gato
 		c9.setStroke(Color.TRANSPARENT);
 		
 		for(int i = 0; i < 9; i++)
+		{
 			cuadro[i] = false;
+			xs[i] = false;
+			cs[i] = false;
+		}
 	}
 	
 	public static Scene gato(Stage stage, ProjectSound ps, DBConnection dbt)
@@ -273,21 +313,40 @@ public class Gato
 		
 		ventana.setBackground(projector.backGround1());
 		
-		Button jugar = new Button(ProjectLocale.rb.getString("restart"));
-		jugar.setLayoutX(125);
-		jugar.setLayoutY(530);
-		Button cargar = new Button(ProjectLocale.rb.getString("load"));
-		cargar.setLayoutX(375);
-		cargar.setLayoutY(530);
+		Button restart = new Button(ProjectLocale.rb.getString("restart"));
+		restart.setLayoutX(190);
+		restart.setLayoutY(530);
 		Button regresar = new Button(ProjectLocale.rb.getString("return"));
-		regresar.setLayoutX(625);
+		regresar.setLayoutX(590);
 		regresar.setLayoutY(530);
 		
-		ventana.getChildren().addAll(jugar, cargar, regresar);		
+		ventana.getChildren().addAll(restart, regresar);		
 		
 		regresar.setOnAction(eve->
 		{
+			ac = false;
+			if(first)
+			{
+				dbt.clean();
+				dbt.removeControlTable();
+			}
 			stage.setScene(MainMenu.Menu(stage, ps, dbt));
+		});
+		
+		restart.setOnAction(eve->
+		{
+			ac = false;
+			beginning = true;
+			reset();
+			if(first)
+			{
+				first = equis = false;
+				dbt.cleanConTa();
+			}
+			else
+			{
+				first = equis = true;
+			}
 		});
 		
 		reset();
@@ -327,16 +386,6 @@ public class Gato
 		nueve.setStrokeWidth(0);
 		nueve.setX(484);
 		nueve.setY(334);
-		
-		uno.setCursor(Cursor.HAND);
-		dos.setCursor(Cursor.HAND);
-		tres.setCursor(Cursor.HAND);
-		cuatro.setCursor(Cursor.HAND);
-		cinco.setCursor(Cursor.HAND);
-		seis.setCursor(Cursor.HAND);
-		siete.setCursor(Cursor.HAND);
-		ocho.setCursor(Cursor.HAND);
-		nueve.setCursor(Cursor.HAND);
 		
 		v1.setFill(Color.BLACK);
 		v2.setFill(Color.BLACK);
@@ -394,11 +443,14 @@ public class Gato
 		
 		Thread thread = new Thread() //Hilo de manejo de juego (turnos) entre usuarios
 		{
+			int reviewed;
+			
 			public void run()
 			{
 				System.out.println("HILO CORRIENDO");
-				while(ac)
+				while(ac) // while nobody had won or the board is full
 				{
+					check();
 					if(first)
 					{
 						if(beginning)
@@ -409,18 +461,27 @@ public class Gato
 					}
 					else
 					{
+						//System.out.println("waiting");
 						beginning = false;
-						System.out.println("waiting");
-						try
+						reviewed =  dbt.checkControl();
+						switch(reviewed)
 						{
-							Thread.sleep(3000);
+						case -1:
+							break;
+						case 1:
+							break;
+						default:
+							if(turn < reviewed)
+								fetch(dbt);
 						}
-						catch (InterruptedException e)
-						{
-							e.printStackTrace();
-						}
-						if(turn < dbt.checkControl())
-							fetch(dbt);
+					}
+					try
+					{
+						Thread.sleep(1000);
+					}
+					catch (InterruptedException e)
+					{
+						e.printStackTrace();
 					}
 				}
 				System.out.println("HILO CERRADO");
@@ -433,9 +494,11 @@ public class Gato
 		dbt.setID();
 		do
 		{
+			//IF CANCEL BREAK SO IDENEMY == -1;
 			dbt.setEnemy(JOptionPane.showInputDialog(null, ProjectLocale.rb.getString("enemyme")));
-			System.out.println(dbt.idenemy);
 		}while(dbt.idenemy == -1);
+		
+		
 		if(dbt.idenemy != -1)
 		{
 			if(dbt.idp < dbt.idenemy)
@@ -446,6 +509,7 @@ public class Gato
 			else
 			{
 				dbt.controlTable = "control_" + dbt.idenemy + "_" + dbt.idp;
+				System.out.println(dbt.controlTable);
 				first = equis = false;
 			}
 			dbtg = dbt;
@@ -470,6 +534,16 @@ public class Gato
 		siete.addEventHandler(MouseEvent.MOUSE_CLICKED, msiete);
 		ocho.addEventHandler(MouseEvent.MOUSE_CLICKED, mocho);
 		nueve.addEventHandler(MouseEvent.MOUSE_CLICKED, mnueve);
+		
+		uno.setCursor(Cursor.HAND);
+		dos.setCursor(Cursor.HAND);
+		tres.setCursor(Cursor.HAND);
+		cuatro.setCursor(Cursor.HAND);
+		cinco.setCursor(Cursor.HAND);
+		seis.setCursor(Cursor.HAND);
+		siete.setCursor(Cursor.HAND);
+		ocho.setCursor(Cursor.HAND);
+		nueve.setCursor(Cursor.HAND);
 	}
 	
 	private static void turnEventsOff()
@@ -483,28 +557,46 @@ public class Gato
 		siete.removeEventHandler(MouseEvent.MOUSE_CLICKED, msiete);
 		ocho.removeEventHandler(MouseEvent.MOUSE_CLICKED, mocho);
 		nueve.removeEventHandler(MouseEvent.MOUSE_CLICKED, mnueve);
+		
+		uno.setCursor(Cursor.DEFAULT);
+		dos.setCursor(Cursor.DEFAULT);
+		tres.setCursor(Cursor.DEFAULT);
+		cuatro.setCursor(Cursor.DEFAULT);
+		cinco.setCursor(Cursor.DEFAULT);
+		seis.setCursor(Cursor.DEFAULT);
+		siete.setCursor(Cursor.DEFAULT);
+		ocho.setCursor(Cursor.DEFAULT);
+		nueve.setCursor(Cursor.DEFAULT);
 	}
 	
 	private static void send(int i)
 	{
+		System.out.println("send");
 		first = false;
 		turnEventsOff();
 		dbtg.send(turn, i); //inserts the cuadro position updated and creates a new turn row
 		turn++;
+		System.out.println("turn after send = " + turn);
 	}
 	
 	private static void fetch(DBConnection dbt)
 	{
-		int u = dbt.fetch(turn);
+		System.out.println("fetch");
+		int u = dbt.fetch(turn); // Catches the change of cuadro of the current turn after its inserted for the other player
 		update(u);
 		turn++;
 		first = true;
 		turnEventsOn();
+		System.out.println("turn after fetch = " + turn);
 	}
 	
 	private static void update(int i)
 	{
 		cuadro[i] = true;
+		if(equis)
+			cs[i] = true;
+		else
+			xs[i] = true;
 		switch(i)
 		{
 		case 0:
@@ -589,5 +681,56 @@ public class Gato
 			}
 			break;
 		}
+	}
+	
+	private static void check()
+	{
+		if((cs[0] && cs[1] && cs[2]) ||
+			(cs[3] && cs[4] && cs[5]) ||
+			(cs[6] && cs[7] && cs[8]) ||
+			(cs[0] && cs[3] && cs[6]) ||
+			(cs[1] && cs[4] && cs[7]) ||
+			(cs[2] && cs[5] && cs[8]) ||
+			(cs[0] && cs[4] && cs[8]) ||
+			(cs[2] && cs[4] && cs[6]))
+		{
+			ac = false;
+			turnEventsOff();
+			if(equis)
+				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("loser"));
+			else
+				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("winner"));
+			
+		}
+		else if((xs[0] && xs[1] && xs[2]) ||
+				(xs[3] && xs[4] && xs[5]) ||
+				(xs[6] && xs[7] && xs[8]) ||
+				(xs[0] && xs[3] && xs[6]) ||
+				(xs[1] && xs[4] && xs[7]) ||
+				(xs[2] && xs[5] && xs[8]) ||
+				(xs[0] && xs[4] && xs[8]) ||
+				(xs[2] && xs[4] && xs[6]))
+		{
+				ac = false;
+				turnEventsOff();
+				if(equis)
+					JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("winner"));
+				else
+					JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("loser"));
+				
+		}
+		else if(cB())
+		{
+			ac = false;
+			turnEventsOff();
+			JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("draw"));
+		}
+	}
+	private static boolean cB()
+	{
+		for(boolean k : cuadro)
+			if(!k)
+				return k;
+		return true;
 	}
 }

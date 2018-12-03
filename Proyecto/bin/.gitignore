@@ -1,5 +1,11 @@
+/resources/
+/games/
+/saves/
 /application/
+<<<<<<< Upstream, based on branch 'master' of https://github.com/ChienMort/PAE-Game-Hub.git
 /games/
 /resources/
 /saves/
+=======
+>>>>>>> 6fd2b99 GATO FINISHED IN 95%
 /localization/

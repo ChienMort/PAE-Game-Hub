@@ -24,6 +24,5 @@ public class Launcher extends Application
 		
 		stage.setScene(Login.login(stage, ps, dbt));
 		stage.show();
-		//ps.playMenuMusic();
 	}
 }

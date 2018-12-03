@@ -81,7 +81,25 @@ public class DBConnection
 		catch (SQLException e)
 		{
 			if(e.getMessage().equals("Communications link failure"))
+			{
+				e.printStackTrace();
 				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("nocav"));
+			}
+			if(e.getMessage().equals("Duplicate entry '"+ usuario + "' for key 'user'"))
+			{
+				try
+				{
+					rs = stmt.executeQuery("Select id from gatopartida where user = '" + usuario + "'");
+					if(rs.next())
+						idp = rs.getInt(1);
+				}
+				catch (SQLException e1)
+				{
+					e1.printStackTrace();
+					if(e.getMessage().equals("Communications link failure"))
+						JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("nocav"));
+				}
+			}
 			else
 				setID();
 		}
@@ -113,13 +131,20 @@ public class DBConnection
 		try
 		{
 			controlTable = "control_" + idp + "_" + idenemy;
-			stmt.execute("create table " + controlTable + "( turn int, cha int)");
-			stmt.execute("insert into " + controlTable + " (turn) values(1)");
+			stmt.execute("create table " + controlTable + "( turn int, cha int, idu int)");
+			stmt.execute("insert into " + controlTable + " (turn, idu) values(1, "+ idp +")");
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("nocav"));
+			if(e.getMessage().equals("Table '" + controlTable + "' already exists"))
+			{
+				cleanConTa();
+			}
+			else
+			{
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("nocav"));
+			}
 		}
 	}
 	
@@ -128,15 +153,19 @@ public class DBConnection
 		try
 		{
 			int c = 0;
-			rs = stmt.executeQuery("select max(turn) from " + controlTable);
-			if(rs.next())
-				c = rs.getInt(1);
+			Statement stmt2 = conn.createStatement();
+			ResultSet rs2 = stmt2.executeQuery("select max(turn) from " + controlTable);
+			if(rs2.next())
+				c = rs2.getInt(1);
 			return c;
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("nocav"));
+			if(!(e.getMessage().equals("Table 'paegame." + controlTable + "' doesn't exist")))
+			{
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("nocav"));
+			}
 		}
 		return -1;
 	}
@@ -164,14 +193,56 @@ public class DBConnection
 	{
 		try
 		{
-			stmt.execute("update " + controlTable + " set cha = " + i + " where turn = " + t);
+			Statement stmt = conn.createStatement();
+			stmt.execute("update " + controlTable + " set cha = " + i + ", idu = "+ idp + " where turn = " + t);
 			int tu = t + 1;
+			System.out.println("Inserted turn " + tu);
 			stmt.execute("insert into " + controlTable + " (turn) values(" + tu + ")");
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("nocav"));
+		}
+	}
+	
+	public void removeControlTable()
+	{
+		try
+		{
+			stmt.execute("drop table " + controlTable);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("nocav"));
+		}
+	}
+	
+	public void clean()
+	{
+		try
+		{
+			stmt.execute("delete from gatopartida where id = " + idp + " or id = " + idenemy);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("nocav"));
+		}
+	}
+	
+	public void cleanConTa()
+	{
+		try
+		{
+			stmt.execute("Delete from " + controlTable + " where turn != 1");
+			stmt.execute("Update " + controlTable + " set cha = null where turn = 1");
+		}
+		catch (SQLException e1)
+		{
+			JOptionPane.showMessageDialog(null, ProjectLocale.rb.getString("nocav"));
+			e1.printStackTrace();
 		}
 	}
 }
